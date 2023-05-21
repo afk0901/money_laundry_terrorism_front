@@ -6,7 +6,8 @@ class OriginOfFunds extends React.Component<any, any>{
     render() {
         return <>
             <FormTitle title={"Uppruni fjármagns"} />
-        <DescriptionForm description={'Description'}/>
+        <DescriptionForm description={this.props.description}
+                         onDescriptionChange={this.props.originOfFundsFormChange} />
         </>
     }
 }

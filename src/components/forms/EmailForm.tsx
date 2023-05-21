@@ -8,7 +8,7 @@ class EmailForm extends React.Component<any, any>{
                 <div className="mb-3">
                     <FormTitle title={"Netfang"}></FormTitle>
                     <input placeholder='Netfang' type="email" className="form-control"
-                    value={this.props.email}
+                    value={this.props.email} onChange={this.props.emailFormChange}
                     />
                 </div>
             </form>

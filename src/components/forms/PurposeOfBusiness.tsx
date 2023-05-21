@@ -6,7 +6,8 @@ class PurposeOfBusiness extends React.Component<any, any>{
     render() {
         return <>
             <FormTitle title={'Tilgangur og eðli viðskipta'} />
-            <DescriptionForm description={'Description'}/>
+            <DescriptionForm description={this.props.description}
+                             onDescriptionChange={this.props.purposeOfBusinessFormChange} />
         </>
     }
 }

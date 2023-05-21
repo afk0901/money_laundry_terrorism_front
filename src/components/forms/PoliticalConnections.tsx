@@ -3,10 +3,17 @@ import CheckBox from "./additinal_forms/CheckBox";
 import FormTitle from "./FormTitle";
 
 class PoliticalConnections extends React.Component<any, any>{
+
     render() {
         return <>
             <FormTitle title={'Pólitísk tengsl'} />
-            <CheckBox checked={true} question={'Er viðskiptavinur með pólítísk tengsl?'} add_description_if_checked={true}/>
+
+            <CheckBox question={'Er viðskiptavinur með pólítísk tengsl?'}
+                      description={this.props.description}
+                      onDescriptionChange={this.props.political_connections_descriptionFormChange}
+                      onCheckboxChange={this.props.politicalConnectionFormChange}
+                      checked={this.props.has_political_connection}
+            />
             </>
     }
 }
