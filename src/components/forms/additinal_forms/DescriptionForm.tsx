@@ -5,6 +5,7 @@ class DescriptionForm extends React.Component<any, any> {
         return <textarea cols={50} rows={5} maxLength={255}
                          value={this.props.description}
                          onChange={this.props.onDescriptionChange}
+                         placeholder={this.props.placeholder}
         />
     }
 }

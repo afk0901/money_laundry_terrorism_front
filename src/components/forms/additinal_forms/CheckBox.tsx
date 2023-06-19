@@ -20,7 +20,9 @@ class CheckBox extends React.Component<any, any>{
                 </div>
                 {this.props.checked && this.props.onDescriptionChange
                     && <DescriptionForm description={this.props.description}
-                                        onDescriptionChange={this.props.onDescriptionChange}/>}
+                                        onDescriptionChange={this.props.onDescriptionChange}
+                                        placeholder={this.props.description_placeholder}
+                    />}
             </>
         )
     }

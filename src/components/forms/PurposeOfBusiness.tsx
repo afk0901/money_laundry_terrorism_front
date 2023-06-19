@@ -7,6 +7,7 @@ class PurposeOfBusiness extends React.Component<any, any>{
         return <>
             <FormTitle title={'Tilgangur og eðli viðskipta'} />
             <DescriptionForm description={this.props.description}
+                             placeholder={"Sláðu inn upplýsingar um tilgang og eðli viðskipta"}
                              onDescriptionChange={this.props.purposeOfBusinessFormChange} />
         </>
     }

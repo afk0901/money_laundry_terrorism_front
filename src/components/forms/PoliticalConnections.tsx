@@ -13,6 +13,7 @@ class PoliticalConnections extends React.Component<any, any>{
                       onDescriptionChange={this.props.political_connections_descriptionFormChange}
                       onCheckboxChange={this.props.politicalConnectionFormChange}
                       checked={this.props.has_political_connection}
+                      description_placeholder={"Sláðu inn nánari upplýsingar um tengslin"}
             />
             </>
     }

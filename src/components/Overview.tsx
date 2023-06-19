@@ -21,9 +21,6 @@ class Overview extends React.Component<any, any>{
             {this.props.risk_level === "low" ?
                 "Lítil" :  this.props.risk_level === "medium" ? "Miðlungs" :
                 this.props.risk_level === "high" ? "Mikil" : "Engin "}
-
-            <button type="button" className="btn btn-success" onChange={this.props.produce_document}>
-                Framkalla skjal</button>
         </>
     }
 }

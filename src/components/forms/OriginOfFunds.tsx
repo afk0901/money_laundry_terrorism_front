@@ -7,7 +7,9 @@ class OriginOfFunds extends React.Component<any, any>{
         return <>
             <FormTitle title={"Uppruni fjármagns"} />
         <DescriptionForm description={this.props.description}
-                         onDescriptionChange={this.props.originOfFundsFormChange} />
+                         onDescriptionChange={this.props.originOfFundsFormChange}
+                         placeholder={"Sláðu inn upplýsingar um uppruna fjármagns"}
+        />
         </>
     }
 }
