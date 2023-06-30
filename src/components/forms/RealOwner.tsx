@@ -1,26 +1,37 @@
-import React from "react";
+import React, { useCallback } from "react";
 import CheckBox from "./additional_forms/CheckBox";
 import FormTitle from "./FormTitle";
 
 interface RealOwnerProps {
     is_real_owner: boolean;
     onIsRealOwnerChange: (newValue: boolean) => void;
-    isValid: () => boolean;
+    setParentValidation?: (valid: boolean) => void;
 }
 
-class RealOwner extends React.Component<RealOwnerProps> {
-    render() {
-        return(
-            <>
-                <FormTitle title={'Raunverulegir eigendur'} />
-                <CheckBox
-                    question={'Er viðskiptavinur Raunverulegur eigandi?'}
-                    checked={this.props.is_real_owner}
-                    onCheckboxChange={this.props.onIsRealOwnerChange}
-                />
-            </>
-        );
-    }
-}
+const RealOwner: React.FC<RealOwnerProps> = ({
+    is_real_owner,
+    onIsRealOwnerChange,
+    setParentValidation,
+}) => {
+
+    // Using useCallback to prevent unnecessary re-renders
+    const handleIsRealOwnerChange = useCallback((newValue: boolean) => {
+        onIsRealOwnerChange(newValue);
+        if(setParentValidation){
+            setParentValidation(true);
+        }
+    }, [onIsRealOwnerChange, setParentValidation]);
+
+    return(
+        <>
+            <FormTitle title={'Raunverulegir eigendur'} />
+            <CheckBox
+                question={'Er viðskiptavinur Raunverulegur eigandi?'}
+                checked={is_real_owner}
+                onCheckboxChange={handleIsRealOwnerChange}
+            />
+        </>
+    );
+};
 
 export default RealOwner;

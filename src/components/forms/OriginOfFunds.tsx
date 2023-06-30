@@ -5,24 +5,29 @@ import FormTitle from "./FormTitle";
 interface OriginOfFundsProps {
     description: string;
     onDescriptionChange: (newDescription: string) => void;
-    next_button_clicked? : boolean
+    next_button_clicked? : boolean;
+    setParentValidation? : (valid : boolean) => void
 }
 
-class OriginOfFunds extends React.Component<OriginOfFundsProps>{
-    render() {
-        return (
-            <>
-                <FormTitle title={"Uppruni fjármagns"} />
-                <DescriptionForm
-                    description={this.props.description}
-                    onDescriptionChange={this.props.onDescriptionChange}
-                    placeholder={"Sláðu inn upplýsingar um uppruna fjármagns"}
-                    next_button_clicked={this.props.next_button_clicked ?? false}
-                    invalid_description_message={"Uppruni fjármagns má ekki vera tómt"}
-                />
-            </>
-        );
-    }
+const OriginOfFunds: React.FC<OriginOfFundsProps> = ({
+    description,
+    onDescriptionChange,
+    next_button_clicked ,
+    setParentValidation
+}) => {
+    return (
+        <>
+            <FormTitle title={"Uppruni fjármagns"} />
+            <DescriptionForm
+                description={description}
+                onDescriptionChange={onDescriptionChange}
+                placeholder={"Sláðu inn upplýsingar um uppruna fjármagns"}
+                next_button_clicked={next_button_clicked}
+                invalid_description_message={"Uppruni fjármagns má ekki vera tómt"}
+                setParentValidation={setParentValidation}
+            />
+        </>
+    );
 }
 
 export default OriginOfFunds;

@@ -70,7 +70,6 @@ class Card extends React.Component<CardProps, CardState>{
                             <RealOwner
                                 is_real_owner={this.state.is_real_owner}
                                 onIsRealOwnerChange={this.handleChange("is_real_owner")}
-                                isValid={() => { return true; }}
                             />,
                             <PoliticalConnections
                                 description={this.state.political_connection_description}

@@ -16,6 +16,7 @@ export const initial_render_and_do_not_expect_validation_error = (the_error_not_
 /**
     * Fills in the input, makes it empty (clears it) and asserts if there is a
     * validation error as expected.
+    * Also asserts if there is only space and fails if that's the case
     *
     * @param placeholder - The input placeholder as a regular expression
     * @param value - The value to type into the input

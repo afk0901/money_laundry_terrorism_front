@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import CheckBox from "./additional_forms/CheckBox"
 import FormTitle from "./FormTitle";
 
@@ -7,29 +7,43 @@ interface PoliticalConnectionsProps {
     has_political_connection: boolean;
     onDescriptionChange: (newDescription: string) => void;
     onHasPoliticalConnectionChange: (newCheckState: boolean) => void;
-    next_button_clicked? : boolean
+    next_button_clicked? : boolean;
+    setParentValidation? : (valid: boolean) => void;
 }
 
-class PoliticalConnections extends React.Component<PoliticalConnectionsProps> {
+const PoliticalConnections: React.FC<PoliticalConnectionsProps> = ({
+    description,
+    has_political_connection,
+    onDescriptionChange,
+    onHasPoliticalConnectionChange,
+    next_button_clicked,
+    setParentValidation
+}) => {
 
-    render() {
-        return (
-            <>
-                <FormTitle title={'Pólitísk tengsl'} />
+    // Using useCallback to prevent unnecessary re-renders
+    const handleHasPoliticalChange = useCallback((newValue: boolean) => {
+        onHasPoliticalConnectionChange(newValue);
+        if(setParentValidation){
+            setParentValidation(true);
+        }
+    }, [onHasPoliticalConnectionChange, setParentValidation]);
 
-                <CheckBox
-                    question={'Er viðskiptavinur með pólítísk tengsl?'}
-                    description={this.props.description}
-                    onDescriptionChange={this.props.onDescriptionChange}
-                    onCheckboxChange={this.props.onHasPoliticalConnectionChange}
-                    checked={this.props.has_political_connection}
-                    description_placeholder={"Sláðu inn nánari upplýsingar um tengslin"}
-                    invalid_description_message={"Slá verður inn pólitísk tengsl eða afhaka við að þau séu til staðar"}
-                    next_button_clicked={this.props.next_button_clicked}
-                />
-            </>
-        );
-    }
+    return (
+        <>
+            <FormTitle title={'Pólitísk tengsl'} />
+
+            <CheckBox
+                question={'Er viðskiptavinur með pólítísk tengsl?'}
+                description={description}
+                onDescriptionChange={onDescriptionChange}
+                onCheckboxChange={handleHasPoliticalChange}
+                checked={has_political_connection}
+                description_placeholder={"Sláðu inn nánari upplýsingar um tengslin"}
+                invalid_description_message={"Slá verður inn pólitísk tengsl eða afhaka við að þau séu til staðar"}
+                next_button_clicked={next_button_clicked}
+            />
+        </>
+    );
 }
 
 export default PoliticalConnections;

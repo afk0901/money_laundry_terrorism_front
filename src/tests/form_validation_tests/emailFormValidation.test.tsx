@@ -14,14 +14,18 @@ const email_has_invalid_format_validation_error = "Netfang er á ógildu sniði"
 
 const handleChange = (stateKey: string) => (newValue: any) => {}
 
-const email_employment_component = (value : string) => {
+const email_component = (value : string) => {
   return <EmailForm email={value} onEmailChange={handleChange("email")}/>
+}
+
+const render_empty_email_component = (value : string = '') => {
+  render(<FormWizard steps={[email_component(value), email_component(value)]}/>)
 }
 
 describe('Email Validation', () => {
 
   test('Next button clicked but empty form - validation error', async () => {
-    render(<FormWizard steps={[email_employment_component(''), email_employment_component('')]}/>)
+    render_empty_email_component()
     const user = userEvent.setup()
     await clickNextButton(user)
     const email_error_el = screen.queryByText(email_cant_be_empty_validation_error)
@@ -29,7 +33,7 @@ describe('Email Validation', () => {
   })
 
   test('Next button clicked but empty form - step-bar validation error', async () => {
-    render(<App />)
+    render_empty_email_component()
     const user = userEvent.setup()
     await clickNextButton(user)
     const step_bar_err_in_place = screen.queryByTestId('invalid-step')
@@ -45,36 +49,33 @@ describe('Email Validation', () => {
   })
 
   test('Validates empty input after user types something in. Should only show the empty validation error.', async () => {
-    render(<App />);
+    render_empty_email_component('Value')
     await fill_input_make_empty_expect_validation_error(/Netfang/i, 'test@test.com', email_cant_be_empty_validation_error);
     expect(screen.queryByText(email_has_invalid_format_validation_error)).not.toBeInTheDocument();
   });
 
   test('Validates invalid email - invalidEmail', async () => {
-    render(<App />);
+    render_empty_email_component()
+    const user = userEvent.setup()
     const input = screen.getByPlaceholderText(/Netfang/i);
-    await userEvent.type(input, 'invalidEmail');
+    await user.type(input, 'invalidEmail');
     expect(screen.getByText(email_has_invalid_format_validation_error)).toBeInTheDocument();
   });
 
   test('Validates invalid email - invalid@', async () => {
-    render(<App />);
+    render_empty_email_component()
+    const user = userEvent.setup()
     const input = screen.getByPlaceholderText(/Netfang/i);
-    await userEvent.type(input, 'invalidEmail@');
+    await user.type(input, 'invalidEmail@');
     expect(screen.getByText(email_has_invalid_format_validation_error)).toBeInTheDocument();
   })
 
   test('Validates invalid email - (invalid@.', async () => {
-    render(<App />);
+    render_empty_email_component()
+    const user = userEvent.setup()
     const input = screen.getByPlaceholderText(/Netfang/i);
-    await userEvent.type(input, 'invalidEmail@.');
+    await user.type(input, 'invalidEmail@.');
     expect(screen.getByText(email_has_invalid_format_validation_error)).toBeInTheDocument();
-  })
-
-  test('Validates empty input if it contains only white spaces', async () => {
-    render(<FormWizard steps={[customer_employment_component('Job'), customer_employment_component('')]}/>)
-    await fill_input_make_empty_expect_validation_error(/Atvinna viðskiptavinar/i, '         ',
-                                                        job_cant_be_empty_validation_error);
   })
 
 });

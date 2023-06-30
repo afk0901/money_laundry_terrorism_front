@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 interface DescriptionFormProps {
     description : string
@@ -6,7 +6,7 @@ interface DescriptionFormProps {
     placeholder : string
     next_button_clicked? : boolean
     invalid_description_message : string
-    setParentValidation? : (valid : boolean) => boolean
+    setParentValidation? : (valid : boolean) => void
 }
 
 const DescriptionForm: React.FC<DescriptionFormProps> =
@@ -20,21 +20,25 @@ const DescriptionForm: React.FC<DescriptionFormProps> =
 
     const [emptyDescription, setEmptyDescription] = useState(false);
 
-    const validate = (description : string) => {
-        if(!description){
-            setEmptyDescription(true)
-            if(setParentValidation) {setParentValidation(false)}
+    const validate = useCallback((description : string) => {
+        !description ? setEmptyDescription(true) : setEmptyDescription(false)
+
+        if(setParentValidation) {
+                description ? setParentValidation(true) :setParentValidation(false)
+            }
+        onDescriptionChange(description)
+    }, [setEmptyDescription, onDescriptionChange, setParentValidation])
+    
+    // Validate the email whenever it changes or the next button is clicked.
+    useEffect(() => {
+        if (next_button_clicked) {
+            validate(description);
         }
-        else {
-            setEmptyDescription(false)
-            if(setParentValidation) {setParentValidation(true)}
-        }
-    }
+    }, [description, next_button_clicked, validate]);
 
     const handleDescriptionChange = (event : React.ChangeEvent<HTMLTextAreaElement>) => {
             const description = event.target.value
             validate(description)
-            onDescriptionChange(description)
         }
 
     return (

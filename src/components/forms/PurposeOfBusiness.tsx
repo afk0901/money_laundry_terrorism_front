@@ -5,26 +5,29 @@ import FormTitle from "./FormTitle";
 interface PurposeOfBusinessProps {
     description: string;
     onDescriptionChange: (newDescription: string) => void;
-    next_button_clicked? : boolean
-    setParentValidation? : (valid : boolean) => boolean
+    next_button_clicked? : boolean;
+    setParentValidation? : (valid : boolean) => boolean;
 }
 
-class PurposeOfBusiness extends React.Component<PurposeOfBusinessProps>{
-    render() {
-        return (
-            <>
-                <FormTitle title={'Tilgangur og eðli viðskipta'} />
-                <DescriptionForm
-                    description={this.props.description}
-                    placeholder={"Sláðu inn upplýsingar um tilgang og eðli viðskipta"}
-                    onDescriptionChange={this.props.onDescriptionChange}
-                    next_button_clicked={this.props.next_button_clicked ?? false}
-                    invalid_description_message={"Tilgangur og eðli viðskipta má ekki vera tómt"}
-                    setParentValidation={this.props.setParentValidation}
-                />
-            </>
-        );
-    }
+const PurposeOfBusiness: React.FC<PurposeOfBusinessProps> = ({
+    description,
+    onDescriptionChange,
+    next_button_clicked = false,
+    setParentValidation
+}) => {
+    return (
+        <>
+            <FormTitle title={'Tilgangur og eðli viðskipta'} />
+            <DescriptionForm
+                description={description}
+                placeholder={"Sláðu inn upplýsingar um tilgang og eðli viðskipta"}
+                onDescriptionChange={onDescriptionChange}
+                next_button_clicked={next_button_clicked}
+                invalid_description_message={"Tilgangur og eðli viðskipta má ekki vera tómt"}
+                setParentValidation={setParentValidation}
+            />
+        </>
+    );
 }
 
 export default PurposeOfBusiness;
