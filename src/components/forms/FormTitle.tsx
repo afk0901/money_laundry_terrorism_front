@@ -1,9 +1,13 @@
 import React from "react";
 
-class FormTitle extends React.Component<any, any> {
+interface FormTitleProps {
+    title: string;
+}
+
+class FormTitle extends React.Component<FormTitleProps> {
     render() {
-        return <h5>{this.props.title}</h5>
+        return <h5>{this.props.title}</h5>;
     }
 }
 
-export default FormTitle
+export default FormTitle;

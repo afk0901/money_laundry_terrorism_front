@@ -1,17 +1,28 @@
 import React from "react";
-import DescriptionForm from "./additinal_forms/DescriptionForm";
+import DescriptionForm from "./additional_forms/DescriptionForm";
 import FormTitle from "./FormTitle";
 
-class OriginOfFunds extends React.Component<any, any>{
+interface OriginOfFundsProps {
+    description: string;
+    onDescriptionChange: (newDescription: string) => void;
+    next_button_clicked? : boolean
+}
+
+class OriginOfFunds extends React.Component<OriginOfFundsProps>{
     render() {
-        return <>
-            <FormTitle title={"Uppruni fjármagns"} />
-        <DescriptionForm description={this.props.description}
-                         onDescriptionChange={this.props.originOfFundsFormChange}
-                         placeholder={"Sláðu inn upplýsingar um uppruna fjármagns"}
-        />
-        </>
+        return (
+            <>
+                <FormTitle title={"Uppruni fjármagns"} />
+                <DescriptionForm
+                    description={this.props.description}
+                    onDescriptionChange={this.props.onDescriptionChange}
+                    placeholder={"Sláðu inn upplýsingar um uppruna fjármagns"}
+                    next_button_clicked={this.props.next_button_clicked ?? false}
+                    invalid_description_message={"Uppruni fjármagns má ekki vera tómt"}
+                />
+            </>
+        );
     }
 }
 
-export default OriginOfFunds
+export default OriginOfFunds;

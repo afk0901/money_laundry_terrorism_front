@@ -7,9 +7,9 @@ interface StepIconProps {
 
 const StepIcon: React.FC<StepIconProps> = ({ stepState }) => {
     if (stepState === undefined) {
-        return <FaRegCircle color="grey" size="25" />;
+        return <span data-testid={"empty-step-icon"}><FaRegCircle color="grey" size="25" /></span>;
     }
-    return stepState ? <FaCheckCircle color="green" size="25" /> : <FaTimesCircle color="red" size="25" />;
+    return stepState ? <FaCheckCircle color="green" size="25" /> : <span data-testid={"invalid-step"}><FaTimesCircle color="red" size="25" /></span>;
 };
 
 export default StepIcon;

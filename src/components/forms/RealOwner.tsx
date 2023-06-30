@@ -1,18 +1,26 @@
 import React from "react";
-import CheckBox from "./additinal_forms/CheckBox";
+import CheckBox from "./additional_forms/CheckBox";
 import FormTitle from "./FormTitle";
 
-class RealOwner extends React.Component<any, any> {
+interface RealOwnerProps {
+    is_real_owner: boolean;
+    onIsRealOwnerChange: (newValue: boolean) => void;
+    isValid: () => boolean;
+}
 
+class RealOwner extends React.Component<RealOwnerProps> {
     render() {
-        return<>
-            <FormTitle title={'Raunverulegir eigendur'} />
-            <CheckBox question={'Er viðskiptavinur Raunverulegur eigandi?'}
-                      checked={this.props.is_real_owner}
-                      onCheckboxChange={this.props.realOwnerFormChange}
-            />
-        </>
+        return(
+            <>
+                <FormTitle title={'Raunverulegir eigendur'} />
+                <CheckBox
+                    question={'Er viðskiptavinur Raunverulegur eigandi?'}
+                    checked={this.props.is_real_owner}
+                    onCheckboxChange={this.props.onIsRealOwnerChange}
+                />
+            </>
+        );
     }
 }
 
-export default RealOwner
+export default RealOwner;
