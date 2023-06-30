@@ -21,7 +21,7 @@ async function click_on_step(user : UserEvent, stepIndex : number) {
  * @param stepLabels - The step labels of the step-bar.
  * @param stepIndex - Index of the corresponding step label of the step to assert.
  */
-async function expect_step_completed(stepLabels : string[] , stepIndex : number) {
+export async function expect_step_completed(stepLabels : string[] , stepIndex : number  = 0) {
      const completedElements = screen.getAllByText(stepLabels[stepIndex])
                                     .filter(element => element.classList.contains('completed'));
           expect(completedElements.length).toBe(1);
@@ -64,17 +64,16 @@ export async function expectNStepsToBeCompleted(stepLabels : string[], startStep
    */
   export async function expect_one_text_element_to_be_completed_when_step_and_next_button_is_clicked(stepLabels : string[], stepIndex : number) {
 
-        const randomIndex = stepIndex
         const user = userEvent.setup()
 
         // Click on a random step
-        await click_on_step(user, randomIndex)
+        await click_on_step(user, stepIndex)
         // Fill into inputs and checkboxes
         await fill_into_every_element(user) // This is slowing things down, find a way to fill into only elements in the step
         await clickNextButton(user)
 
         // Expect that random step to be completed.
-        await expect_step_completed(stepLabels, randomIndex)
+        await expect_step_completed(stepLabels, stepIndex)
   }
 
 /**
@@ -90,4 +89,4 @@ export async function expectAllStepIconsInDocument(stepBarIcons : HTMLElement[])
   }
 
   module.exports = {expect_one_text_element_to_be_completed_when_step_and_next_button_is_clicked,
-                    expectNStepsToBeCompleted, expectAllStepIconsInDocument}
+                    expectNStepsToBeCompleted, expectAllStepIconsInDocument, expect_step_completed}

@@ -35,8 +35,11 @@ export async function clickNextButtonNTimes(n : number, validationErrors : strin
     const user = userEvent.setup()
     if (n <= 0) return;
 
+    //If validationErrors[n-1] or validationErrors[n] is undefined, then that means we are not supposed to
+    //check for validation error for that one.
+
     // Initially, there should be no validation error for the current step.
-    const initialValidationError = screen.queryByText(validationErrors[n-1]) !== null;
+    const initialValidationError = validationErrors[n-1] ? screen.queryByText(validationErrors[n-1]) !== null : false;
     expect(initialValidationError).toBe(false);
 
     // Fill into inputs and checkboxes.
@@ -44,9 +47,9 @@ export async function clickNextButtonNTimes(n : number, validationErrors : strin
     await clickNextButton(user);
 
     // The next validation error should not appear in the next step when the next button is clicked.
-    const nextValidationErrorFound = n < validationErrors.length ? screen.queryByText(validationErrors[n]) !== null : false;
+    const nextValidationErrorFound = validationErrors[n] ? (n < validationErrors.length ? screen.queryByText(validationErrors[n]) !== null : false): false;
     // The current step should not display any validation error either.
-    const currentValidationError = screen.queryByText(validationErrors[n-1]) !== null;
+    const currentValidationError = validationErrors[n-1] ? screen.queryByText(validationErrors[n-1]) !== null : false;
 
     // Expect no validation errors to be visible.
     expect(currentValidationError || nextValidationErrorFound).toBe(false);

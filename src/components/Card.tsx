@@ -80,7 +80,6 @@ class Card extends React.Component<CardProps, CardState>{
                             <RiskLevel
                                 risk_level={this.state.risk_level}
                                 onRiskLevelChange={this.handleChange("risk_level")}
-                                isValid={() => { return true; }}
                             />,
                             <Overview {...this.state} />
                         ]} />

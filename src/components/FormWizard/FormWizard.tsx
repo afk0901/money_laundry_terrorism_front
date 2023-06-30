@@ -34,6 +34,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps }) => {
     };
 
     const nextStep = () => {
+        //setIsValid(false)
         setnextButtonClicked(true)
         if (currentStep < steps.length - 1) {
             // Setting new step states, valid step, invalid step or neither invalid nor valid step (undefined)
@@ -46,7 +47,6 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps }) => {
              if (isValid) {
                  setShouldValidateCurrentForm(false);
                  setCurrentStep(currentStep + 1);
-
                  // Resetting the nextButtonClicked state
                  setnextButtonClicked(false)
             }
