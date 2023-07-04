@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, {useCallback, useEffect} from "react";
 import CheckBox from "./additional_forms/CheckBox";
 import FormTitle from "./FormTitle";
 
@@ -17,10 +17,16 @@ const RealOwner: React.FC<RealOwnerProps> = ({
     // Using useCallback to prevent unnecessary re-renders
     const handleIsRealOwnerChange = useCallback((newValue: boolean) => {
         onIsRealOwnerChange(newValue);
+
+    }, [onIsRealOwnerChange]);
+
+    // Validate the email whenever it changes or the next button is clicked.
+
+    useEffect(() => {
         if(setParentValidation){
             setParentValidation(true);
         }
-    }, [onIsRealOwnerChange, setParentValidation]);
+    }, [setParentValidation]);
 
     return(
         <>

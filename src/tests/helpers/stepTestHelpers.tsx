@@ -10,21 +10,49 @@ import {UserEvent} from "@testing-library/user-event/setup/setup";
  * @param user - userEvent.setup()
  * @param stepIndex - The index of the step in the step-bar
  */
-async function click_on_step(user : UserEvent, stepIndex : number) {
+export async function click_on_step(user : UserEvent, stepIndex : number) {
     const step = screen.getByTestId(`step-${stepIndex}`);
     await user.click(step);
 }
 
 /**
- * Asserts that a random step is completed.
+ * Total completed steps.
+ * Returns the total number of steps that have the completed class.
+ * (completed steps)
+ * according to the stepLabels array.
+ * If an array of steps is provided but no index, it will assert the first step.
+ *
+ * @param stepLabels - The step labels of the step-bar.
+ * @param stepIndex - Index of the corresponding step label of the step to assert.
+ */
+function total_completed_steps(stepLabels : string[], stepIndex : number= 0) {
+
+    return screen.getAllByText(stepLabels[stepIndex]).filter(element => element.classList.contains('completed')).length;
+}
+
+/**
+ * Asserts that a step is completed.
+ * If an array of steps is provided but no index, it will assert the first step.
+ * Otherwise, you should provide an index.
  *
  * @param stepLabels - The step labels of the step-bar.
  * @param stepIndex - Index of the corresponding step label of the step to assert.
  */
 export async function expect_step_completed(stepLabels : string[] , stepIndex : number  = 0) {
-     const completedElements = screen.getAllByText(stepLabels[stepIndex])
-                                    .filter(element => element.classList.contains('completed'));
-          expect(completedElements.length).toBe(1);
+    expect(total_completed_steps(stepLabels, stepIndex)).toBe(1);
+}
+
+/**
+ * Asserts that a step is NOT completed.
+ * If an array of steps is provided but no index, it will assert the first step.
+ * Otherwise, you should provide an index.
+ *
+ * @param stepLabels - The step labels of the step-bar.
+ * @param stepIndex - Index of the corresponding step label of the step to assert.
+ */
+
+export async function expect_steps_not_completed(stepLabels : string[] , stepIndex : number  = 0) {
+          expect(total_completed_steps(stepLabels, stepIndex)).toBe(0);
 }
 
 /**
@@ -89,4 +117,7 @@ export async function expectAllStepIconsInDocument(stepBarIcons : HTMLElement[])
   }
 
   module.exports = {expect_one_text_element_to_be_completed_when_step_and_next_button_is_clicked,
-                    expectNStepsToBeCompleted, expectAllStepIconsInDocument, expect_step_completed}
+                    expectNStepsToBeCompleted, expectAllStepIconsInDocument,
+                    expect_step_completed,
+                    expect_steps_not_completed,
+                    click_on_step}

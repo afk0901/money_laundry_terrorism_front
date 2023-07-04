@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import DescriptionForm from "./DescriptionForm";
 
 interface CheckBoxProps {
@@ -10,36 +10,44 @@ interface CheckBoxProps {
     description_placeholder?: string;
     next_button_clicked?: boolean
     invalid_description_message? : string
+    setParentValidation? : (valid : boolean) => void
 }
 
-class CheckBox extends React.Component<CheckBoxProps> {
+const CheckBox: React.FC<CheckBoxProps> = ({
+    question,
+    checked,
+    onCheckboxChange,
+    description,
+    onDescriptionChange,
+    description_placeholder,
+    next_button_clicked,
+    invalid_description_message
+}) => {
 
-    render() {
-        return (
-            <>
-                <div className="form-check">
-                    <input className="form-check-input"
-                           type="checkbox"
-                           name={this.props.question}
-                           id={this.props.question}
-                           onChange={(e) => this.props.onCheckboxChange(e.target.checked)}
-                           checked={this.props.checked}
-                    />
+    return (
+        <>
+            <div className="form-check">
+                <input className="form-check-input"
+                       type="checkbox"
+                       name={question}
+                       id={question}
+                       onChange={(e) => onCheckboxChange(e.target.checked)}
+                       checked={checked}
+                />
 
-                    <label htmlFor={this.props.question}>
-                        {this.props.question}
-                    </label>
-                </div>
-                {this.props.checked && this.props.onDescriptionChange
-                    && <DescriptionForm description={this.props.description || ''}
-                                        onDescriptionChange={this.props.onDescriptionChange}
-                                        placeholder={this.props.description_placeholder || ''}
-                                        next_button_clicked={this.props.next_button_clicked ?? false}
-                                        invalid_description_message={this.props.invalid_description_message ?? ""}
-                    />}
-            </>
-        )
-    }
+                <label htmlFor={question}>
+                    {question}
+                </label>
+            </div>
+            {checked && onDescriptionChange
+                && <DescriptionForm description={description || ''}
+                                    onDescriptionChange={onDescriptionChange}
+                                    placeholder={description_placeholder || ''}
+                                    next_button_clicked={next_button_clicked ?? false}
+                                    invalid_description_message={invalid_description_message ?? ""}
+                />}
+        </>
+    )
 }
 
 export default CheckBox;
