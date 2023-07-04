@@ -4,7 +4,6 @@ import {clickNextButton} from "../helpers/clickNextAndBackButtons";
 import userEvent from "@testing-library/user-event";
 import {click_on_step, expect_step_completed, expect_steps_not_completed} from "../helpers/stepTestHelpers";
 import App from "../../components/App";
-import {fill_into_every_element} from "../helpers/fill_into_inputs_and_steps_helpers";
 
 //Testing forms that do not need to be filled out to be valid.
 // Integration test. Rendering App may be slow later on, but it's a major headache to get these

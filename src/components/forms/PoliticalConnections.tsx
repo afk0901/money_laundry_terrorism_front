@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useEffect} from "react";
 import CheckBox from "./additional_forms/CheckBox"
 import FormTitle from "./FormTitle";
 
@@ -27,6 +27,15 @@ const PoliticalConnections: React.FC<PoliticalConnectionsProps> = ({
             setParentValidation(true);
         }
     }, [onHasPoliticalConnectionChange, setParentValidation]);
+
+    // Letting the parent know that the form is valid, no matter what
+    // as it's optional.
+
+    useEffect(() => {
+        if(setParentValidation){
+            setParentValidation(true);
+        }
+    }, [setParentValidation]);
 
     return (
         <>

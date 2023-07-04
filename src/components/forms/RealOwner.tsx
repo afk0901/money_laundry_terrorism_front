@@ -20,7 +20,8 @@ const RealOwner: React.FC<RealOwnerProps> = ({
 
     }, [onIsRealOwnerChange]);
 
-    // Validate the email whenever it changes or the next button is clicked.
+    // Letting the parent know that the form is valid, no matter what
+    //as it's optional.
 
     useEffect(() => {
         if(setParentValidation){

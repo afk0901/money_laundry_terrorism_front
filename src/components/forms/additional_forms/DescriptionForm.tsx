@@ -18,7 +18,7 @@ const DescriptionForm: React.FC<DescriptionFormProps> =
         setParentValidation
     }) => {
 
-    const [emptyDescription, setEmptyDescription] = useState(false);
+    const [emptyDescription, setEmptyDescription] = useState(true);
 
     const validate = useCallback((description : string) => {
         !description ? setEmptyDescription(true) : setEmptyDescription(false)

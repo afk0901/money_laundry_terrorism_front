@@ -5,6 +5,8 @@ import PoliticalConnections from "../../components/forms/PoliticalConnections";
 import {fill_input_make_empty_expect_validation_error} from "../helpers/form_validation_test_helpers";
 import {clickNextButton} from "../helpers/clickNextAndBackButtons";
 import userEvent from "@testing-library/user-event";
+import App from "../../components/App";
+import {click_on_step} from "../helpers/stepTestHelpers";
 
 const political_connection_validation_error = "Slá verður inn pólitísk tengsl eða afhaka við að þau séu til staðar"
 
@@ -24,6 +26,11 @@ describe('Political Connections Form Validation test', () => {
 
     test('No validation error for Political Connections when the user has not checked the checkbox', async () => {
         render(<FormWizard steps={[political_connection_component(''), political_connection_component('')]}/>)
+        expect(screen.queryByText(political_connection_validation_error)).not.toBeInTheDocument()
+    })
+
+    test('No validation error should be initially when Political connections is checked', async () => {
+        render(<FormWizard steps={[political_connection_component('', true), political_connection_component('', true)]}/>)
         expect(screen.queryByText(political_connection_validation_error)).not.toBeInTheDocument()
     })
 
