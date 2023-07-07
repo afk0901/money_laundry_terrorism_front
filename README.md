@@ -1,4 +1,18 @@
-# Getting Started with Create React App
+# Customer due diligence regarding to money laundry and terrorism - Form Wizard made with React
+
+Customer due diligence regarding money laundry and terrorism is a form that legally needs to be filled out by certain institutions, especially financial ones or real estate sales, in the fight against money laundry and terrorism. This specific project focuses on real estate sales or properties, and all the text for the forms is in Icelandic and aims to follow Icelandic laws regarding the content needed to be filled out. 
+
+The project is a form wizard where the user is guided through the process of filling that form in. It's eight steps, one form for each step, and includes a step bar that the user can click on to go to any steps the user wants. The step bar indicates if the corresponding step is valid or not when the next button is clicked,  and then finally, it will produce a PDF document with all the data.
+
+# Backstory
+
+An unnamed company asked for this project to be done for them, but as time passed, the situation changed in a way this project will be a personal one for now. The situations can't be explained here as they are confidential, but that's how this started. Then time went on, and the author decided to continue with the project even tho it may not be used by the company as it's a fun project to work on and improves front-end skills.
+
+# Getting Started
+
+## Setting up the project
+
+Simply run `npm install` which should be sufficient to install everything. Below are available scripts for example, for running the app and running tests. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -44,3 +58,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Copyright
+
+Copyright © 2023 Arnar Freyr Kristinsson. All rights reserved.
