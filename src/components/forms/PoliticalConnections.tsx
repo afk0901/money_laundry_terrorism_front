@@ -23,19 +23,22 @@ const PoliticalConnections: React.FC<PoliticalConnectionsProps> = ({
     // Using useCallback to prevent unnecessary re-renders
     const handleHasPoliticalChange = useCallback((newValue: boolean) => {
         onHasPoliticalConnectionChange(newValue);
-        if(setParentValidation){
-            setParentValidation(true);
+
+        if(description === '' && setParentValidation) {
+            setParentValidation(false);
         }
-    }, [onHasPoliticalConnectionChange, setParentValidation]);
+    }, [description, onHasPoliticalConnectionChange, setParentValidation]);
 
     // Letting the parent know that the form is valid, no matter what
     // as it's optional.
 
     useEffect(() => {
-        if(setParentValidation){
+        // If the checkbox is empty, then notify the parent that the form is valid.
+        if(!has_political_connection && setParentValidation){
             setParentValidation(true);
         }
-    }, [setParentValidation]);
+
+    }, [setParentValidation, has_political_connection]);
 
     return (
         <>
