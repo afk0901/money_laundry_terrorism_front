@@ -23,7 +23,8 @@ It's all in progress now and has yet to be released. Please take a look at the f
 # Screenshots
 Here are a few screenshots to further clarify how the project looks and works.
 
-![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/17b48652-e4c6-4a9d-8f32-ed5a75a558fb)
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/8d4225c8-2952-4691-ba54-aa69f74ca373)
+
 
 As shown in the screenshot, we have a simple form and a step bar, and as this is the first step then, only the next button is shown. The step bar has step labels attached to each step, and steps that are not yet processed have empty icons. In this case, all of them are empty. 
 
