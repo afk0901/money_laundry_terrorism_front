@@ -29,31 +29,34 @@ Here are a few screenshots to further clarify how the project looks and works.
 As shown in the screenshot, we have a simple form and a step bar, and as this is the first step then, only the next button is shown. The step bar has step labels attached to each step, and steps that are not yet processed have empty icons. In this case, all of them are empty. 
 
 
-![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/b651953d-4503-44a8-a2da-5d3a51719206)
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/ccb4df86-37e7-46e0-8a1e-11283fd3c63e)
+
 
 Here we have filled in the form but we cleared the field again and now we get a validation error, as shown in red.
 
-![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/85855ba6-43f6-4a72-b89d-c23c61d1a72f)
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/14fe1de0-7a00-4136-a665-8673cd848a0e)
+
 
 Next, we clicked on the Next button, but as we left the field empty validation error is shown in the step bar. 
 
-![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/4b284a72-01ad-427f-8f71-b4c42c395b5d)
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/13fa18ac-6437-438a-997a-ae1fa0d68114)
+
 
 As we fill in the correct step and we click on the next button we can see the next step and the previous button.
 
 All this process is done for all the steps in the step bar until the end of the wizard. After that, an overview is displayed.
 
-![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/6f02133d-cb31-4466-bcfe-1f09c02c3bfb)
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/3f3566f1-94f6-466b-a652-822ce970501b)
+
 
 This is an example of how it could look when everything is filled out and the user is at the last step but of course, it's needed to make it more pretty than this.
-
-
 
 
 # Tools used in the project
 
 - React 18.2.0
 - React Testing Library 13.4.0
+- Bootstrap 5.2 for styling and responsiveness
 
 # Backstory
 
