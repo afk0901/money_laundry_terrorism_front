@@ -2,7 +2,7 @@
 
 Customer due diligence regarding money laundry and terrorism is a form that legally needs to be filled out by certain institutions, especially financial ones or real estate sales, in the fight against money laundry and terrorism. This specific project focuses on real estate sales or properties, and all the text for the forms is in Icelandic and aims to follow Icelandic laws regarding the content needed to be filled out. 
 
-The project is a form wizard where the user is guided through the process of filling that form in. It's eight steps, one form for each step, and includes a step bar that the user can click on to go to any steps the user wants. The step bar indicates if the corresponding step is valid or not when the next button is clicked,  and then finally, it will produce a PDF document with all the data.
+The project is a form wizard where the user is guided through the process of filling that form in. It's eight steps, one form for each step, and includes a step bar that the user can click on to go to any steps the user wants. The step bar indicates if the corresponding step is valid or not when the next button is clicked,  and then finally, it will produce a PDF document with all the data. The project is done with the help of Chatgtp 4. Most of the basic functionality is done by guiding Chatgtp to make some stuff. Even so, the code is indeed unique and original.
 
 It's all in progress now and has yet to be released. Please take a look at the features section for finished features and additional information about them.
 
@@ -11,14 +11,43 @@ It's all in progress now and has yet to be released. Please take a look at the f
 ### Useable features
 
 - Step bar that shows the invalid and valid state depending on if the form is valid when the next button is clicked. Otherwise, empty icons.
-- The data filled in the forms persists as long the user does not close the browser or leaves the page.
+- The data filled in the forms persists as long the user does not close the browser or leave the page.
 - Next and back buttons that show the next and previous steps.
 
 ### Future features
 
 -  Bug fix for the step bar - it's not working as intended just yet. Work in progress.
 -  PDF generation - generating a PDF document from all the data
--  Connection to a backend - API connection to a backend API so the data can be saved as the user processes the form. 
+-  Connection to a backend - API connection to a backend API so the data can be saved as the user processes the form.
+
+# Screenshots
+Here are a few screenshots to further clarify how the project looks and works.
+
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/17b48652-e4c6-4a9d-8f32-ed5a75a558fb)
+
+As shown in the screenshot, we have a simple form and a step bar, and as this is the first step then, only the next button is shown. The step bar has step labels attached to each step, and steps that are not yet processed have empty icons. In this case, all of them are empty. 
+
+
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/b651953d-4503-44a8-a2da-5d3a51719206)
+
+Here we have filled in the form but we cleared the field again and now we get a validation error, as shown in red.
+
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/85855ba6-43f6-4a72-b89d-c23c61d1a72f)
+
+Next, we clicked on the Next button, but as we left the field empty validation error is shown in the step bar. 
+
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/4b284a72-01ad-427f-8f71-b4c42c395b5d)
+
+As we fill in the correct step and we click on the next button we can see the next step and the previous button.
+
+All this process is done for all the steps in the step bar until the end of the wizard. After that, an overview is displayed.
+
+![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/6f02133d-cb31-4466-bcfe-1f09c02c3bfb)
+
+This is an example of how it could look when everything is filled out and the user is at the last step but of course, it's needed to make it more pretty than this.
+
+
+
 
 # Tools used in the project
 
