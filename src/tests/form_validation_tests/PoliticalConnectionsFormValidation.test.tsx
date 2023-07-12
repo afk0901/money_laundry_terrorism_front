@@ -3,7 +3,6 @@ import {render, screen} from "@testing-library/react";
 import FormWizard from "../../components/FormWizard/FormWizard";
 import PoliticalConnections from "../../components/forms/PoliticalConnections";
 import {fill_input_make_empty_expect_validation_error} from "../helpers/form_validation_test_helpers";
-import {clickNextButton} from "../helpers/clickNextAndBackButtons";
 import userEvent from "@testing-library/user-event";
 
 const political_connection_validation_error = "Slá verður inn pólitísk tengsl eða afhaka við að þau séu til staðar"

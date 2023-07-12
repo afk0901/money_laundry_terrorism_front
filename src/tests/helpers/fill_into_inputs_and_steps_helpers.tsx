@@ -42,8 +42,8 @@ async function type_into_all_inputs(user : UserEvent) {
      */
 
    export async function fill_into_every_element(user : UserEvent) {
-        await type_into_all_inputs(user)
         await click_all_checkboxes(user)
+        await type_into_all_inputs(user)
    }
 
 

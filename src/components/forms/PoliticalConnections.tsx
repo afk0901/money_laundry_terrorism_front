@@ -23,11 +23,7 @@ const PoliticalConnections: React.FC<PoliticalConnectionsProps> = ({
     // Using useCallback to prevent unnecessary re-renders
     const handleHasPoliticalChange = useCallback((newValue: boolean) => {
         onHasPoliticalConnectionChange(newValue);
-
-        if(description === '' && setParentValidation) {
-            setParentValidation(false);
-        }
-    }, [description, onHasPoliticalConnectionChange, setParentValidation]);
+    }, [onHasPoliticalConnectionChange]);
 
     // Letting the parent know that the form is valid, no matter what
     // as it's optional.
@@ -37,8 +33,11 @@ const PoliticalConnections: React.FC<PoliticalConnectionsProps> = ({
         if(!has_political_connection && setParentValidation){
             setParentValidation(true);
         }
+        else {
+            if (setParentValidation && description === '') {setParentValidation(false)}
+        }
 
-    }, [setParentValidation, has_political_connection]);
+    }, [setParentValidation, has_political_connection, description]);
 
     return (
         <>
@@ -53,6 +52,7 @@ const PoliticalConnections: React.FC<PoliticalConnectionsProps> = ({
                 description_placeholder={"Sláðu inn nánari upplýsingar um tengslin"}
                 invalid_description_message={"Slá verður inn pólitísk tengsl eða afhaka við að þau séu til staðar"}
                 next_button_clicked={next_button_clicked}
+                setParentValidation={setParentValidation}
             />
         </>
     );

@@ -10,8 +10,9 @@ describe('Sad path - Empty form and next button clicked', () => {
     describe('Testing when clicked on individual steps', () => {
 
         stepLabels.forEach((text, index) => {
-            // Everything after the first four steps should always be valid.
-            // See formsNoValidate.test.tsx for tests for these forms.
+
+            // Only testing the first four steps as the other steps either do not need validation or
+            // they have some sort of special validation rules.
 
             if(index < 4) {
                 test(`Step ${index + 1} is not completed when next button is clicked`, async () => {
@@ -29,6 +30,11 @@ describe('Sad path - Empty form and next button clicked', () => {
     describe('Testing when clicked on next button N+1 times - should produce validation error at step N+1', () => {
 
     stepLabels.forEach((text, index) => {
+
+        // Only testing the first four steps as the other steps either do not need validation or
+        // they have some sort of special validation rules.
+
+        if(index < 4) {
         test(`Next button clicked ${index + 1} but empty form - validation error`, async () => {
             render(<App/>)
             const user = userEvent.setup()
@@ -39,6 +45,7 @@ describe('Sad path - Empty form and next button clicked', () => {
             expect(error_el).toBeInTheDocument()
         })
 
+
         test('Next button clicked but empty form - step-bar validation error', async () => {
             render(<App/>)
             const user = userEvent.setup()
@@ -46,8 +53,9 @@ describe('Sad path - Empty form and next button clicked', () => {
             await clickNextButton(user)
             const step_bar_err_in_place = screen.queryByTestId('invalid-step')
             expect(step_bar_err_in_place).toBeInTheDocument()
+            })
+            }
         })
     })
 })
-     })
 

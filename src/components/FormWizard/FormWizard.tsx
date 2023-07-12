@@ -47,7 +47,9 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps }) => {
              if (isValid) {
                  setShouldValidateCurrentForm(false);
                  setCurrentStep(currentStep + 1);
-                 // Resetting the nextButtonClicked state
+
+                 //Resetting sates, so they do not continue to be true on the next step
+                 setIsValid(false)
                  setnextButtonClicked(false)
             }
         }

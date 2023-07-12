@@ -1,4 +1,5 @@
 import DescriptionForm from "./DescriptionForm";
+import React from "react";
 
 interface CheckBoxProps {
     question: string;
@@ -9,7 +10,7 @@ interface CheckBoxProps {
     description_placeholder?: string;
     next_button_clicked?: boolean
     invalid_description_message? : string
-    setParentValidation? : (valid : boolean) => void
+    setParentValidation? : (valid: boolean) => void;
 }
 
 const CheckBox: React.FC<CheckBoxProps> = ({
@@ -20,7 +21,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
     onDescriptionChange,
     description_placeholder,
     next_button_clicked,
-    invalid_description_message
+    invalid_description_message, setParentValidation
 }) => {
 
     return (
@@ -44,6 +45,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
                                     placeholder={description_placeholder || ''}
                                     next_button_clicked={next_button_clicked ?? false}
                                     invalid_description_message={invalid_description_message ?? ""}
+                                    setParentValidation={setParentValidation}
                 />}
         </>
     )
