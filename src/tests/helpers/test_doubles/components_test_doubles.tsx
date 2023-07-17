@@ -40,7 +40,7 @@ export const customer_employment_component = (value : string = '') => {
  * @param component - the component to render in the FormWizard component.
  */
 export const render_component_with_form_wizard = (component : ReactElement) => {
-  render(<FormWizard steps={[component, component]}/>)
+  render(<FormWizard produce_document={handleChange} steps={[component, component]}/>)
 }
 
 module.exports = {email_component, customer_employment_component, render_component_with_form_wizard}

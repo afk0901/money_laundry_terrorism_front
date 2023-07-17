@@ -5,10 +5,6 @@ import userEvent from "@testing-library/user-event";
 import {click_on_step, expect_step_completed, expect_steps_not_completed} from "../helpers/stepTestHelpers";
 import App from "../../components/App";
 
-//Testing forms that do not need to be filled out to be valid.
-// Integration test. Rendering App may be slow later on, but it's a major headache to get these
-//tests working by only rendering the FormWizard.
-
 describe('FormWizard - Valid forms', () => {
 
     test('Real Owner should be valid on Next click when not checked', async () => {
@@ -39,7 +35,11 @@ describe('FormWizard - Valid forms', () => {
         await expect_step_completed(["Pólitísk tengsl"])
     })
 
-    test('Risk should always be valid on Next click', () => {
-
+    test('Risk should always be valid on Next click', async () => {
+        render(<App />)
+        const user = userEvent.setup()
+        await click_on_step(user, 6)
+        await clickNextButton(user)
+        //await expect_step_completed(["Pólitísk tengsl"])
     })
 })

@@ -4,9 +4,10 @@ import './stepbar.css';
 
 interface FormWizardProps {
     steps: React.ReactElement<{ setParentValidation: (isValid: boolean) => void; shouldValidate?: boolean, next_button_clicked : boolean}>[];
+    produce_document: () => void
 }
 
-const FormWizard: React.FC<FormWizardProps> = ({ steps }) => {
+const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
     const [currentStep, setCurrentStep] = useState(0);
     const [stepStates, setStepStates] = useState<(boolean | undefined)[]>(Array(steps.length).fill(undefined));
     const [shouldValidateCurrentForm, setShouldValidateCurrentForm] = useState(false);
@@ -62,14 +63,6 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps }) => {
         }
     };
 
-    const submit = () => {
-        if (stepStates.every(state => state === true)) {
-            console.log("Form submitted");
-        } else {
-            console.log("Form incomplete");
-        }
-    };
-
     return (
         <div className="container">
             <div className="d-flex justify-content-center align-items-center flex-column flex-md-row mt-5">
@@ -95,7 +88,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps }) => {
                 {currentStep < steps.length - 1 ? (
                     <button className="btn btn-primary ml-2" onClick={() => { setShouldValidateCurrentForm(true); nextStep(); }}>Next</button>
                 ) : (
-                    <button className="btn btn-primary ml-2" onClick={submit}>Submit</button>
+                    <button className="btn btn-primary ml-2" onClick={produce_document}>Framkalla skjal</button>
                 )}
             </div>
         </div>
