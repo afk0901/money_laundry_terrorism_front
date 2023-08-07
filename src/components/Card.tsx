@@ -11,24 +11,29 @@ import FormWizard from "./FormWizard/FormWizard";
 import CustomerEmployment from "./forms/CustomerEmployment";
 
 interface CardProps {
+    email : string
+    customer_employment : string
+    origin_of_funds: string
+    purpose_of_business : string
+    political_connection_description : string
+    risk_level : string
+    is_real_owner : boolean
+    has_political_connections : boolean
+
     produce_document: () => void
-    handleChange: (new_value : string) => void
+    handleChange: (state_key : string) => (new_value : any) => void
 }
 
-const Card: FC<CardProps> = ({ produce_document, handleChange }) => {
-
-    const [email, setEmail] = useState<string>('');
-    const [customer_employment, setCustomerEmployment] = useState<string>('');
-    const [origin_of_funds, setOriginOfFunds] = useState<string>('');
-    const [purpose_of_business, setPurposeOfBusiness] = useState<string>('');
-    const [political_connection_description, setPoliticalConnectionDescription] = useState<string>('');
-    const [risk_level, setRiskLevel] = useState<string>('');
-    const [is_real_owner, setIsRealOwner] = useState<boolean>(false);
-    const [has_political_connections, setHasPoliticalConnections] = useState<boolean>(false);
-
-    Starfsmenn - Kóðagerðinn
-    Nýtt félag?
-        
+const Card: FC<CardProps> = ({   email,
+                                 customer_employment,
+                                 origin_of_funds,
+                                 purpose_of_business,
+                                 political_connection_description,
+                                 risk_level,
+                                 is_real_owner,
+                                 has_political_connections,
+                                 produce_document,
+                                 handleChange }) => {
 
     return (
         <div className="card mx-3 my-3">
@@ -71,7 +76,14 @@ const Card: FC<CardProps> = ({ produce_document, handleChange }) => {
                             risk_level={risk_level}
                             onRiskLevelChange={handleChange('risk_level')}
                         />,
-                        <Overview {...{email, customer_employment, origin_of_funds, purpose_of_business, political_connection_description, risk_level, is_real_owner, has_political_connections}} />
+                        <Overview {...{ email,
+                                        customer_employment,
+                                        origin_of_funds,
+                                        purpose_of_business,
+                                        political_connection_description,
+                                        risk_level,
+                                        is_real_owner,
+                                        has_political_connections}} />
                     ]
                     } />
                 </div>
