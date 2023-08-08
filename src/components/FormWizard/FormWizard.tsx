@@ -46,7 +46,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
                 return newStepStates;
              });
              if (isValid) {
-                 setShouldValidateCurrentForm(false);
+                 //setShouldValidateCurrentForm(false);
                  setCurrentStep(currentStep + 1);
 
                  //Resetting sates, so they do not continue to be true on the next step
@@ -58,7 +58,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
 
     const prevStep = () => {
         if (currentStep > 0) {
-            setShouldValidateCurrentForm(false);
+            setIsValid(true)
             setCurrentStep(currentStep - 1);
         }
     };
