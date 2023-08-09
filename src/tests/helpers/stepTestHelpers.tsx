@@ -116,8 +116,15 @@ export async function expectAllStepIconsInDocument(stepBarIcons : HTMLElement[])
     });
   }
 
+  export function getActiveStepLabel(labelText: RegExp) {
+    const stepLabelElements = screen.getAllByText(labelText);
+    return stepLabelElements.find((label: HTMLElement) => label.classList.contains('active'));
+    }
+
+
   module.exports = {expect_one_text_element_to_be_completed_when_step_and_next_button_is_clicked,
                     expectNStepsToBeCompleted, expectAllStepIconsInDocument,
                     expect_step_completed,
                     expect_steps_not_completed,
-                    click_on_step}
+                    click_on_step,
+                    getActiveStepLabel}
