@@ -86,9 +86,9 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
             <div className="d-flex justify-content-between">
                 {currentStep > 0 && <button className="btn btn-primary" onClick={prevStep}>Previous</button>}
                 {currentStep < steps.length - 1 ? (
-                    <button className="btn btn-primary ml-2" onClick={() => { setShouldValidateCurrentForm(true); nextStep(); }}>Next</button>
+                    <button className="btn btn-primary ml-2" id={"next"} onClick={() => { setShouldValidateCurrentForm(true); nextStep(); }}>Next</button>
                 ) : (
-                    <button className="btn btn-primary ml-2" onClick={produce_document}>Framkalla skjal</button>
+                    <button className="btn btn-primary ml-2" id={"back"} onClick={produce_document}>Framkalla skjal</button>
                 )}
             </div>
         </div>
