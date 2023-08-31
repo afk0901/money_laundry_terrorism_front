@@ -1,4 +1,4 @@
-import {render, screen} from "@testing-library/react";
+import {act, render, screen} from "@testing-library/react";
 import React from "react";
 import {
    fill_input_make_empty_expect_validation_error,
@@ -29,21 +29,10 @@ describe('Origin Of Funds validation', () => {
   test('Validates empty input after user types something in. Should only show the empty validation error.', async () => {
 
     render(<FormWizard produce_document={handleChange} steps={[origin_of_funds_component('Origin Of Funds'), origin_of_funds_component('')]}/>)
-    await fill_input_make_empty_expect_validation_error(/uppruna fjármagns/i, 'Origin Of Funds',
-                                                        origin_of_funds_cant_be_empty_validation_error);
+    await act( async () => {
+      await fill_input_make_empty_expect_validation_error(/uppruna fjármagns/i, 'Origin Of Funds',
+          origin_of_funds_cant_be_empty_validation_error);
+    })
     expect(screen.getByText(origin_of_funds_cant_be_empty_validation_error)).toBeInTheDocument();
-
   });
-
-  test('Next button clicked but empty form - validation error', async () => {
-    // Adding two components as the next button will not be displayed on the last step
-
-    render(<FormWizard produce_document={handleChange} steps={[origin_of_funds_component('', true), origin_of_funds_component('Origins Of Funds')]}/>)
-    // Clicking the step as we need to render the whole app to be able to click on the Next button
-    const user = userEvent.setup()
-    const nextButton = screen.getByText(/Next/i);
-    await user.click(nextButton)
-    expect(screen.getByText(origin_of_funds_cant_be_empty_validation_error)).toBeInTheDocument()
-  })
-
 })

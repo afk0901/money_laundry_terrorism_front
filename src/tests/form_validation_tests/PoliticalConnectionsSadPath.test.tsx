@@ -1,4 +1,4 @@
-import {render, screen} from "@testing-library/react";
+import {act, render, screen} from "@testing-library/react";
 import App from "../../components/App";
 import userEvent from "@testing-library/user-event";
 import {clickNextButton} from "../helpers/clickNextAndBackButtons";
@@ -10,10 +10,19 @@ test('Should not be valid if checkbox is checked but description is empty', asyn
          render(<App />)
          const user = userEvent.setup()
          const step = screen.getByTestId('step-5')
-         await user.click(step)
+         await act( async () => {
+             await user.click(step)
+              })
+
          const checkbox = screen.getByLabelText('Er viðskiptavinur með pólítísk tengsl?')
-         await user.click(checkbox)
-         await clickNextButton(user)
+
+         await act( async () => {
+             await user.click(checkbox)
+             })
+          await act( async () => {
+              await clickNextButton(user)
+          })
+
          //await expect_steps_not_completed(['Pólitísk tengsl'], 5)
          expect(screen.getByText(political_connection_validation_error)).toBeInTheDocument();
     })

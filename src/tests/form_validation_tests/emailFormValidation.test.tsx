@@ -1,4 +1,4 @@
-import {screen} from "@testing-library/react";
+import {act, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {initial_render_and_do_not_expect_validation_error, fill_input_make_empty_expect_validation_error}
         from "../helpers/form_validation_test_helpers"
@@ -21,7 +21,9 @@ describe('Email Validation', () => {
 
   test('Validates empty input after user types something in. Should only show the empty validation error.', async () => {
     render_component_with_form_wizard(email_component('Value'))
-    await fill_input_make_empty_expect_validation_error(/Netfang/i, 'test@test.com', email_cant_be_empty_validation_error);
+    await act( async () => {
+      await fill_input_make_empty_expect_validation_error(/Netfang/i, 'test@test.com', email_cant_be_empty_validation_error);
+    })
     expect(screen.queryByText(email_has_invalid_format_validation_error)).not.toBeInTheDocument();
   });
 
@@ -29,7 +31,9 @@ describe('Email Validation', () => {
     render_component_with_form_wizard(email_component())
     const user = userEvent.setup()
     const input = screen.getByPlaceholderText(/Netfang/i);
-    await user.type(input, 'invalidEmail');
+     await act( async () => {
+       await user.type(input, 'invalidEmail');
+     })
     expect(screen.getByText(email_has_invalid_format_validation_error)).toBeInTheDocument();
   });
 
@@ -37,7 +41,9 @@ describe('Email Validation', () => {
     render_component_with_form_wizard(email_component())
     const user = userEvent.setup()
     const input = screen.getByPlaceholderText(/Netfang/i);
-    await user.type(input, 'invalidEmail@');
+    await act( async () => {
+      await user.type(input, 'invalidEmail@');
+    })
     expect(screen.getByText(email_has_invalid_format_validation_error)).toBeInTheDocument();
   })
 
@@ -45,7 +51,9 @@ describe('Email Validation', () => {
     render_component_with_form_wizard(email_component())
     const user = userEvent.setup()
     const input = screen.getByPlaceholderText(/Netfang/i);
-    await user.type(input, 'invalidEmail@.');
+    await act( async () => {
+      await user.type(input, 'invalidEmail@.');
+    })
     expect(screen.getByText(email_has_invalid_format_validation_error)).toBeInTheDocument();
   })
 

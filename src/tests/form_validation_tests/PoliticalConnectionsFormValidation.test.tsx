@@ -1,5 +1,5 @@
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {act, render, screen} from "@testing-library/react";
 import FormWizard from "../../components/FormWizard/FormWizard";
 import PoliticalConnections from "../../components/forms/PoliticalConnections";
 import {fill_input_make_empty_expect_validation_error} from "../helpers/form_validation_test_helpers";
@@ -50,7 +50,9 @@ describe('Political Connections Form Validation test', () => {
             political_connection_component('')]}/>)
 
         // Description checkbox is shown; we are expecting that the checkbox is already clicked on.
-        await fill_input_make_empty_expect_validation_error(/nánari upplýsingar um tengslin/i, 'Political Connections',
-                                                        political_connection_validation_error);
+        await act( async () => {
+            await fill_input_make_empty_expect_validation_error(/nánari upplýsingar um tengslin/i, 'Political Connections',
+                political_connection_validation_error);
+        })
   });
 })
