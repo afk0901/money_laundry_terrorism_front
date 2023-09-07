@@ -27,7 +27,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
     return (
         <>
             <div className="form-check">
-                <input className="form-check-input"
+                <input className="form-check-input checkbox"
                        type="checkbox"
                        name={question}
                        id={question}

@@ -54,6 +54,7 @@ const CustomerEmployment: React.FC<CustomerEmploymentProps> = ({
                     value={customerEmployment}
                     onChange={handleCustomerEmploymentChange}
                     required
+                    id={'customer-job'}
                 />
                 {emptyJob && <div className="invalid-feedback">Atvinna viðskiptavinar má ekki vera tómt</div>}
             </div>

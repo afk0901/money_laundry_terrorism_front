@@ -44,7 +44,7 @@ const DescriptionForm: React.FC<DescriptionFormProps> =
     return (
         <>
         <textarea
-            className={`form-control ${ (emptyDescription) ? 'is-invalid' : 'is-valid'}`}
+            className={`form-control ${ (emptyDescription) ? 'is-invalid' : 'is-valid'} description`}
             cols={50}
             rows={5}
             maxLength={255}

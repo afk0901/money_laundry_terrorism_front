@@ -70,7 +70,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
                     <div className="step-container" key={index}>
                         <div className={`step-label text-center me-1 ${stepStates[index] ? 'completed' : ''} ${currentStep === index ? 'active' : ''}`}>
                             {stepLabels[index]}</div>
-                        <Step stepState={stepStates[index]} onClick={() => goToStep(index)} data_test_id={`step-${index}`}/>
+                        <Step stepState={stepStates[index]} onClick={() => goToStep(index)} id={`step-${index}`}/>
                         {index < steps.length - 1 && <div className="border-bottom border-dark mx-2 step-line d-none d-md-block" />}
                     </div>
                 ))}
@@ -84,11 +84,11 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
                 )}
             </div>
             <div className="d-flex justify-content-between">
-                {currentStep > 0 && <button className="btn btn-primary" onClick={prevStep}>Previous</button>}
+                {currentStep > 0 && <button className="btn btn-primary" id={"back"} onClick={prevStep}>Previous</button>}
                 {currentStep < steps.length - 1 ? (
                     <button className="btn btn-primary ml-2" id={"next"} onClick={() => { setShouldValidateCurrentForm(true); nextStep(); }}>Next</button>
                 ) : (
-                    <button className="btn btn-primary ml-2" id={"back"} onClick={produce_document}>Framkalla skjal</button>
+                    <button className="btn btn-primary ml-2 produce_document_butt"  onClick={produce_document}>Framkalla skjal</button>
                 )}
             </div>
         </div>

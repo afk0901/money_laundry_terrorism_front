@@ -1,4 +1,4 @@
-import {render, screen} from "@testing-library/react";
+import {act, render, screen} from "@testing-library/react";
 import React from "react";
 import {
    fill_input_make_empty_expect_validation_error,
@@ -12,7 +12,7 @@ import PurposeOfBusiness from "../../components/forms/PurposeOfBusiness";
 
 const purpose_of_business_cant_be_empty_validation_error  = "Tilgangur og eðli viðskipta má ekki vera tómt"
 
-const handleChange = (stateKey: string = '') => (newValue: any) => {}
+const handleChange  = () => {}
 
 const purpose_of_business_component = (value : string, next_button_clicked=false) => {
   return <PurposeOfBusiness description={value} onDescriptionChange={handleChange}
@@ -29,8 +29,10 @@ describe('Purpose Of Business validation', () => {
   test('Validates empty input after user types something in. Should only show the empty validation error.', async () => {
 
     render(<FormWizard produce_document={handleChange} steps={[purpose_of_business_component('Purpose Of Business'), purpose_of_business_component('')]}/>)
-    await fill_input_make_empty_expect_validation_error(/tilgang og eðli viðskipta/i, 'Purpose of business',
-                                                        purpose_of_business_cant_be_empty_validation_error);
+    await act(async () => {
+      await fill_input_make_empty_expect_validation_error(/tilgang og eðli viðskipta/i, 'Purpose of business',
+          purpose_of_business_cant_be_empty_validation_error);
+    })
     expect(screen.getByText(purpose_of_business_cant_be_empty_validation_error)).toBeInTheDocument();
 
   });
@@ -42,7 +44,9 @@ describe('Purpose Of Business validation', () => {
     // Clicking the step as we need to render the whole app to be able to click on the Next button
     const user = userEvent.setup()
     const nextButton = screen.getByText(/Next/i);
-    await user.click(nextButton)
+    await act(async () => {
+      await user.click(nextButton)
+    })
     expect(screen.getByText(purpose_of_business_cant_be_empty_validation_error)).toBeInTheDocument()
   })
 
