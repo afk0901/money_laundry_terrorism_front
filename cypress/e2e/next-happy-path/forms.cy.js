@@ -121,7 +121,6 @@ describe('Click on next and check the forms', () => {
           //Step 6 should be invalid but others valid.
         click_next_and_invalidate('Slá verður inn pólitísk tengsl', 5)
 
-
         fill_and_click_next('.description', political_connections)
 
         //step one, two, three, four, five and six should be valid now.
@@ -154,6 +153,8 @@ describe('Click on next and check the forms', () => {
 
         // Verify the information in the overview
         verify_overview()
+
+        //TODO: Verify overview with different risks.
 
         // Produce document
         cy.get('.produce_document_butt').click()
