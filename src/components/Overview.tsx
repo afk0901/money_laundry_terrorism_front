@@ -20,7 +20,7 @@ class Overview extends React.Component<any, any>{
 
             {this.props.risk_level === "low" ?
                 "Lítil" :  this.props.risk_level === "medium" ? "Miðlungs" :
-                this.props.risk_level === "high" ? "Mikil" : "Engin "}
+                this.props.risk_level === "high" ? "Mikil" : "Lítil "}
         </>
     }
 }

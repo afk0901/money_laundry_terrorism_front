@@ -19,15 +19,23 @@ const verify_valid_steps = (current_step) => {
     }
 };
 
+const no_validation_error = () => {
+     cy.get('.container').contains('má ekki vera tómt').should('not.exist')
+     cy.get('.container').contains('ógildu sniði').should('not.exist')
+     cy.get('.container').contains('Slá verður inn pólitísk tengsl').should('not.exist')
+     cy.get('.container').not('.invalid')
+}
+
 /**
  * Validates if the input is invalid when next button is clicked.
+ *
  * @param feedback - validation feedback that contains the input.
  * @param step_number - number of the step that's invalid
+ *
  */
 const click_next_and_invalidate = (feedback, step_number) => {
     cy.get(next_id).click();
     cy.get('.invalid-feedback').contains(feedback || 'má ekki vera tómt');
-    console.log(step_number)
     cy.get(`#step-${step_number} .invalid-step`).should('exist')
 };
 
@@ -43,7 +51,13 @@ const fill_and_click_next = (selector, value) => {
     cy.get(next_id).click();
 };
 
-const verify_overview = () => {
+/**
+ * Verifying if the overview states the correct information.
+ * Risk changes, but has fixed value, so we want to
+ * check the overview with different risk values.
+ *
+ */
+const verify_overview = (risk) => {
 
     cy.get('.container').contains('Allt rétt?')
     cy.get('.container').contains('Netfang')
@@ -57,18 +71,19 @@ const verify_overview = () => {
     cy.get('.container').contains('Pólitísk tengsl')
     cy.get('.container').contains('Political connections is yada yada')
     cy.get('.container').contains('Áhætta af viðskiptum með hliðsjón af áhættumati')
-    cy.get('.container').contains('Mikil')
+    cy.get('.container').contains(risk)
 
     //step one, two, three, four, five and six should be valid now.
     verify_valid_steps(5)
 }
 describe('Click on next and check the forms', () => {
 
-    it('should be able to go to the next step when the form is valid and produces validation errors correctly', () => {
+    it('should be able to go to the next step when the form is valid and produces validation errors correctly and overview should be correctly produced', () => {
 
         cy.visit('localhost:3000')
 
         // Email
+        no_validation_error()
         click_next_and_invalidate(undefined, 0)
 
         // Should produce validation error if email is invalid on clicking next,
@@ -81,11 +96,13 @@ describe('Click on next and check the forms', () => {
         verify_valid_steps(0)
 
         // Customer Job
+        no_validation_error()
         click_next_and_invalidate(undefined, 1)
         fill_and_click_next('[placeholder="Atvinna viðskiptavinar"]', customer_job)
         verify_valid_steps(1)
 
         // Purpose of business
+        no_validation_error()
         click_next_and_invalidate(undefined, 2)
         fill_and_click_next('.description', purpose_of_business)
 
@@ -93,6 +110,7 @@ describe('Click on next and check the forms', () => {
         verify_valid_steps(2)
 
         //Origin Of Funds
+        no_validation_error()
         click_next_and_invalidate(undefined, 3)
         fill_and_click_next('.description', origin_of_funds)
 
@@ -100,6 +118,7 @@ describe('Click on next and check the forms', () => {
         verify_valid_steps(3)
 
         //Real Owner
+        no_validation_error()
         cy.get('.checkbox').check()
         cy.get(next_id).click()
 
@@ -107,6 +126,7 @@ describe('Click on next and check the forms', () => {
         verify_valid_steps(4)
 
         //Political connections (without a description)
+        no_validation_error()
         cy.get(next_id).click()
 
         //step one, two, three, four, five and six should be valid now.
@@ -116,6 +136,7 @@ describe('Click on next and check the forms', () => {
         cy.get(back_id).click()
 
         // Political connections (with description)
+        no_validation_error()
         cy.get('.checkbox').check()
         verify_valid_steps(4)
           //Step 6 should be invalid but others valid.
@@ -127,17 +148,20 @@ describe('Click on next and check the forms', () => {
         verify_valid_steps(5)
 
         // Risk (Small)
+        no_validation_error()
         cy.get('select').select('Lítil')
         cy.get(next_id).click()
+        verify_overview('Lítil')
 
         //step one, two, three, four, five, six and seven should be valid now.
         verify_valid_steps(5)
-
         cy.get(back_id).click()
 
         // Risk (Medium)
+        no_validation_error()
         cy.get('select').select('Miðlungs')
         cy.get(next_id).click()
+        verify_overview('Miðlungs')
 
         //step one, two, three, four, five, six and seven should be valid now.
         verify_valid_steps(6)
@@ -145,16 +169,13 @@ describe('Click on next and check the forms', () => {
         cy.get(back_id).click()
 
         // Risk (High)
+        no_validation_error()
         cy.get('select').select('Mikil')
         cy.get(next_id).click()
+        verify_overview('Mikil')
 
         //step one, two, three, four, five, six and seven should be valid now.
         verify_valid_steps(6)
-
-        // Verify the information in the overview
-        verify_overview()
-
-        //TODO: Verify overview with different risks.
 
         // Produce document
         cy.get('.produce_document_butt').click()
