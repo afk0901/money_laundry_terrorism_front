@@ -1,4 +1,4 @@
-# Customer due diligence regarding money laundry and terrorism - Form Wizard made with React
+# Customer due diligence regarding money laundering and terrorism - Form Wizard made with React
 
 Customer due diligence regarding money laundry and terrorism is a form that legally needs to be filled out by certain institutions, especially financial ones or real estate sales, in the fight against money laundry and terrorism. This specific project focuses on real estate sales or properties, and all the text for the forms is in Icelandic and aims to follow Icelandic laws regarding the content needed to be filled out. 
 
