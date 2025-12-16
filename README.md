@@ -60,7 +60,7 @@ This is an example of how it could look when everything is filled out and the us
 
 # Backstory
 
-Once up on time, an unnamed company hired a person. The person worked there for a while before changing their mind on something else. The unnamed company asked for this project to be done for them, but as time passed, the situation changed in a way this project will be a personal one for now. The situations can't be explained here as they are confidential, but that's how this all started. Then time went on, and the author decided to continue with the project even tho it may not be used by the company, as it's a fun project to work on and improves front-end skills.
+The project originated from real business requirements for a company. Due to changing circumstances, it was not deployed and has since been continued and maintained as a personal project.
 
 # Getting Started
 
