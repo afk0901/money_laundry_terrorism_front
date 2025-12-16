@@ -2,7 +2,7 @@
 
 Customer due diligence regarding money laundry and terrorism is a form that legally needs to be filled out by certain institutions, especially financial ones or real estate sales, in the fight against money laundry and terrorism. This specific project focuses on real estate sales or properties, and all the text for the forms is in Icelandic and aims to follow Icelandic laws regarding the content needed to be filled out. 
 
-The project is a form wizard where the user is guided through the process of filling that form in. It's eight steps, one form for each step, and includes a step bar that the user can click on to go to any steps the user wants. The step bar indicates if the corresponding step is valid or not when the next button is clicked,  and then finally, it will produce a PDF document with all the data. The project is done with the help of Chatgtp 4. Most of the basic functionality is done by guiding Chatgtp to make some stuff. Even so, the code is indeed unique and original.
+The project is a form wizard where the user is guided through the process of filling that form in. It's eight steps, one form for each step, and includes a step bar that the user can click on to go to any steps the user wants. The step bar indicates if the corresponding step is valid or not when the next button is clicked,  and then finally, it will produce a PDF document with all the data.
 
 It's all in progress now and has yet to be released. Please take a look at the features section for finished features and additional information about them.
 
