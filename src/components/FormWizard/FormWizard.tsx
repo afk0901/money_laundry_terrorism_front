@@ -70,7 +70,9 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
                     <div className="step-container" key={index}>
                         <div className={`step-label text-center me-1 ${stepStates[index] ? 'completed' : ''} ${currentStep === index ? 'active' : ''}`}>
                             {stepLabels[index]}</div>
-                        <Step stepState={stepStates[index]} onClick={() => goToStep(index)} id={`step-${index}`}/>
+                        <Step stepState={stepStates[index]} onClick={() => goToStep(index)} 
+                        id={`step-${index}`
+                    }/>
                         {index < steps.length - 1 && <div className="border-bottom border-dark mx-2 step-line d-none d-md-block" />}
                     </div>
                 ))}

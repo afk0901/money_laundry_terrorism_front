@@ -98,7 +98,7 @@ const App: React.FC<AppProps> = () => {
                   has_political_connections={has_political_connections} />
             }
                 {shouldProduceDocument && <MoneyLaundryPDFDocument produce_document={produce_document}
-                                                                   documentUrl={"https://moneylaundrybucket.s3.amazonaws.com/0901972749-1REUNION787898.pdf?AWSAccessKeyId=AKIAYA7REZGI5BM4BONX&Signature=sljjD2H0PrrNb4cAz4rbvB2Fo%2Bo%3D&Expires=1690357982"} />}
+                                          documentUrl={"https://moneylaundrybucket.s3.amazonaws.com/0901972749-1REUNION787898.pdf?AWSAccessKeyId=AKIAYA7REZGI5BM4BONX&Signature=sljjD2H0PrrNb4cAz4rbvB2Fo%2Bo%3D&Expires=1690357982"} />}
         </>
     );
 }
