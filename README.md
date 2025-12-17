@@ -1,12 +1,13 @@
 # Customer due diligence regarding money laundering and terrorism - Form Wizard made with React
 
-Customer due diligence regarding money laundry and terrorism is a form that legally needs to be filled out by certain institutions, especially financial ones or real estate sales, in the fight against money laundry and terrorism. This specific project focuses on real estate sales or properties, and all the text for the forms is in Icelandic and aims to follow Icelandic laws regarding the content needed to be filled out. 
+Customer due diligence regarding to money laundering and terrorism, is a form that legally needs to be filled out by certain institutions, especially financial ones or real estate sales, in the fight against money laundering and terrorism. This specific project focuses on real estate sales or properties, and all the text for the forms is in icelandic and aims to follow icelandic laws regarding the content needed to be filled out.
 
-The project is a form wizard where the user is guided through the process of filling that form in. It's eight steps, one form for each step, and includes a step bar that the user can click on to go to any steps the user wants. The step bar indicates if the corresponding step is valid or not when the next button is clicked,  and then finally, it will produce a PDF document with all the data.
+The project is a form wizard where the user is guided through the process of filling that form in. It's eight steps, one form for each step and includes a step bar that the user can click on to go to any steps the user wants. The step bar indicates if the corresponding step is valid or not when the next button is clicked and then finally, it will produce a PDF document with all the data.
 
-It's all in progress now and has yet to be released. Please take a look at the features section for finished features and additional information about them.
+## Known bugs
+- After PDF creation, there is a back button. When that button is clicked, the displayed form input is invalid.
 
-# Features
+## Features
 
 ### Useable features
 
@@ -16,11 +17,11 @@ It's all in progress now and has yet to be released. Please take a look at the f
 
 ### Future features
 
--  Bug fix for the step bar - it's not working as intended just yet. Work in progress.
+-  Validation only activates on blur to prevent inconvenience for the user when typing in the data and providing better UX.
 -  PDF generation - generating a PDF document from all the data
 -  Connection to a backend - API connection to a backend API so the data can be saved as the user processes the form.
 
-# Screenshots
+## Screenshots
 Here are a few screenshots to further clarify how the project looks and works.
 
 ![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/8d4225c8-2952-4691-ba54-aa69f74ca373)
@@ -49,7 +50,8 @@ All this process is done for all the steps in the step bar until the end of the 
 ![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/3f3566f1-94f6-466b-a652-822ce970501b)
 
 
-This is an example of how it could look when everything is filled out and the user is at the last step but of course, it's needed to make it more pretty than this.
+This is an example of how it could look when everything is filled out to verify with the user that the information are all correct
+before we later on produce a PDF document with all the information.
 
 
 # Tools used in the project
