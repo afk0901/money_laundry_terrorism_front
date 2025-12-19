@@ -28,6 +28,7 @@ const MoneyLaundryPDFDocument: React.FC<MoneyLaundryPDFDocumentProps> = ({
         >
           <p>Úps! Nú fór eitthvað úrskeiðis! Ekki tókst að birta skjalið!</p>
         </object>
+
           <div className="d-flex justify-content-between">
                 <button className="btn btn-primary" onClick={go_back}>Til Baka í yfirlit</button>
             </div>

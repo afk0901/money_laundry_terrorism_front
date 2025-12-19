@@ -13,7 +13,8 @@ const App: React.FC<AppProps> = () => {
     const [risk_level, setRiskLevel] = useState<string>('');
     const [is_real_owner, setIsRealOwner] = useState<boolean>(false);
     const [has_political_connections, setHasPoliticalConnections] = useState<boolean>(false);
-    const [shouldProduceDocument, setShouldProduceDocument] = useState(false)
+    const [shouldProduceDocument, setShouldProduceDocument] = useState(false);
+    const [documentURL, setDocumentURL] = useState<string>("F.pdf");
 
     /**
      * Decides if the PDF document should be produced or not. Sets the should_produce state/hook
@@ -23,8 +24,8 @@ const App: React.FC<AppProps> = () => {
      *
      */
     const produce_document = (should_produce : boolean = true) => {
-
-        should_produce ? setShouldProduceDocument(true) : setShouldProduceDocument(false)
+      
+      should_produce ? setShouldProduceDocument(true) : setShouldProduceDocument(false)
     }
 
     // Note to self (As this is a personal project, I allow myself to make notes in the code.):
@@ -97,8 +98,9 @@ const App: React.FC<AppProps> = () => {
                   is_real_owner={is_real_owner}
                   has_political_connections={has_political_connections} />
             }
-                {shouldProduceDocument && <MoneyLaundryPDFDocument produce_document={produce_document}
-                                          documentUrl={"https://moneylaundrybucket.s3.amazonaws.com/0901972749-1REUNION787898.pdf?AWSAccessKeyId=AKIAYA7REZGI5BM4BONX&Signature=sljjD2H0PrrNb4cAz4rbvB2Fo%2Bo%3D&Expires=1690357982"} />}
+                {shouldProduceDocument && <MoneyLaundryPDFDocument 
+                                          produce_document={produce_document}
+                                          documentUrl={documentURL} />}
         </>
     );
 }

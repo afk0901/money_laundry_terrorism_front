@@ -90,7 +90,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
                 {currentStep < steps.length - 1 ? (
                     <button className="btn btn-primary ml-2" id={"next"} onClick={() => { setShouldValidateCurrentForm(true); nextStep(); }}>Next</button>
                 ) : (
-                    <button className="btn btn-primary ml-2 produce_document_butt"  onClick={produce_document}>Framkalla skjal</button>
+                    <button className="btn btn-primary ml-2 produce_document_butt" onClick={produce_document}>Framkalla skjal</button>
                 )}
             </div>
         </div>
