@@ -1,11 +1,10 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import InformationProcessingNotice from "./InformationProcessingNotice";
 import EmailForm from "./forms/EmailForm";
 import PurposeOfBusiness from "./forms/PurposeOfBusiness";
 import OriginOfFunds from "./forms/OriginOfFunds";
 import RealOwner from "./forms/RealOwner";
 import PoliticalConnections from "./forms/PoliticalConnections";
-import RiskLevel from "./forms/RiskLevel";
 import Overview from "./Overview";
 import FormWizard from "./FormWizard/FormWizard";
 import CustomerEmployment from "./forms/CustomerEmployment";
@@ -16,7 +15,6 @@ interface CardProps {
     origin_of_funds: string
     purpose_of_business : string
     political_connection_description : string
-    risk_level : string
     is_real_owner : boolean
     has_political_connections : boolean
 
@@ -29,7 +27,6 @@ const Card: FC<CardProps> = ({   email,
                                  origin_of_funds,
                                  purpose_of_business,
                                  political_connection_description,
-                                 risk_level,
                                  is_real_owner,
                                  has_political_connections,
                                  produce_document,
@@ -72,16 +69,11 @@ const Card: FC<CardProps> = ({   email,
                             onHasPoliticalConnectionChange={handleChange('has_political_connections')}
                             onDescriptionChange={handleChange('political_connection_description')}
                         />,
-                        <RiskLevel
-                            risk_level={risk_level}
-                            onRiskLevelChange={handleChange('risk_level')}
-                        />,
                         <Overview {...{ email,
                                         customer_employment,
                                         origin_of_funds,
                                         purpose_of_business,
                                         political_connection_description,
-                                        risk_level,
                                         is_real_owner,
                                         has_political_connections}} />
                     ]

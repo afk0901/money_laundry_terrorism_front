@@ -21,7 +21,6 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
         'Uppruni fjármagns',
         'Raunverulegir eigendur',
         'Pólitísk tengsl',
-        'Áhætta af viðskiptum',
         'Yfirlit'
     ];
 
@@ -46,7 +45,6 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
                 return newStepStates;
              });
              if (isValid) {
-                 //setShouldValidateCurrentForm(false);
                  setCurrentStep(currentStep + 1);
 
                  //Resetting sates, so they do not continue to be true on the next step
@@ -86,9 +84,9 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps , produce_document}) => {
                 )}
             </div>
             <div className="d-flex justify-content-between">
-                {currentStep > 0 && <button className="btn btn-primary" id={"back"} onClick={prevStep}>Previous</button>}
+                {currentStep > 0 && <button className="btn btn-primary" id={"back"} onClick={prevStep}>Til baka</button>}
                 {currentStep < steps.length - 1 ? (
-                    <button className="btn btn-primary ml-2" id={"next"} onClick={() => { setShouldValidateCurrentForm(true); nextStep(); }}>Next</button>
+                    <button className="btn btn-primary ml-2" id={"next"} onClick={() => { setShouldValidateCurrentForm(true); nextStep(); }}>Næst</button>
                 ) : (
                     <button className="btn btn-primary ml-2 produce_document_butt" onClick={produce_document}>Framkalla skjal</button>
                 )}
