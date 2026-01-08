@@ -25,6 +25,7 @@ const RealOwner: React.FC<RealOwnerProps> = ({
 
     useEffect(() => {
         if(setParentValidation){
+            console.log("Valid");
             setParentValidation(true);
         }
     }, [setParentValidation]);

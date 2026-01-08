@@ -1,15 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import PageNumberDisplay from "./PageNumberDisplay";
-import DownloadButton from './DownloadButton';
+import DownloadButton from "./DownloadButton";
+import BackToFormButton from "./BackToFormButton";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 interface DisplayPDFProps {
   pdf: Blob;
+  onBackToForm: () => void;
 }
 
-export default function DisplayPDF({ pdf }: DisplayPDFProps) {
+export default function DisplayPDF({ pdf, onBackToForm }: DisplayPDFProps) {
   //Avoiding recreating the object URL on each render for performance reasons.
   //Only recreate when the pdf prop changes.
   const pdf_url = useMemo(() => URL.createObjectURL(pdf), [pdf]);
@@ -81,8 +83,9 @@ export default function DisplayPDF({ pdf }: DisplayPDFProps) {
         <PageNumberDisplay current_page={1} total_pages={num_pages} />
       </div>
     </div>
-    <div className="d-flex justify-content-center mt-3">
-        <DownloadButton pdfBlob={pdf} filename={"KYC_Form.pdf"} />
+    <div className="d-flex justify-content-center gap-2 mt-3">
+      <BackToFormButton onClick={onBackToForm} />
+      <DownloadButton pdfBlob={pdf} filename={"KYC_Form.pdf"} />
     </div>
     </>
   );

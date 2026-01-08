@@ -45,6 +45,10 @@ const App: React.FC<AppProps> = () => {
         setKYCPdfBlob(KYCPDFBlob);
     }
 
+    const handleBackToForm = () => {
+      setShouldProduceDocument(false);
+    }
+
   const handleChange = (stateKey: string) => (newValue: any) => {
     switch (stateKey) {
       case "email":
@@ -85,7 +89,7 @@ const App: React.FC<AppProps> = () => {
                   is_real_owner={is_real_owner}
                   has_political_connections={has_political_connections} />
             }
-            {shouldProduceDocument && <DisplayPDF pdf={pdfKYCBlob} />}
+                {shouldProduceDocument && <DisplayPDF pdf={pdfKYCBlob} onBackToForm={handleBackToForm} />}
         </>
     );
 }
