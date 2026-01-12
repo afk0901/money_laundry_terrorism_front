@@ -55,7 +55,7 @@ const EmailForm: React.FC<EmailFormProps> = ({email, onEmailChange, setParentVal
                 <input
                     placeholder='Netfang'
                     type="email"
-                    className={`form-control ${ (emptyEmail && hasBeenTouchedBefore || next_button_clicked) || (!validEmail && hasBeenTouchedBefore) ? 'is-invalid' : '' }`}
+                    className={`form-control ${ (emptyEmail) ? 'is-invalid' : 'is-valid'}`}
                     value={email}
                     onChange={handleEmailChange}
                     required

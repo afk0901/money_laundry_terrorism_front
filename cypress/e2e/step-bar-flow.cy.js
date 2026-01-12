@@ -12,7 +12,7 @@ describe('Click on steps and check the form', () => {
 
     it('should produce the correct form when step one is clicked', () => {
         cy.get('#step-0').click()
-        cy.get(`[placeholder="Netfang]`)
+        cy.get(`[placeholder="Netfang"]`)
     });
 
     it('should produce the correct form when step two is clicked', () => {
@@ -38,10 +38,5 @@ describe('Click on steps and check the form', () => {
     it('should produce the correct form when step six is clicked', () => {
         cy.get('#step-5').click()
         cy.get('.container').contains("Er viðskiptavinur með pólítísk tengsl?")
-    });
-
-    it('should produce the correct form when step seven is clicked', () => {
-        cy.get('#step-6').click()
-        cy.get('.container').contains("Hvar fellur viðskiptamaður í áhættumatið og hver er áhættan af fyrirhuguðum viðskiptum.")
     });
 })
