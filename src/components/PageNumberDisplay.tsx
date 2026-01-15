@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface PageNumberDisplayProps {
     current_page: number;
     total_pages: number;

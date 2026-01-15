@@ -19,12 +19,10 @@
       "version": "detect"
     }
   },
-  "overrides": [
-    {
-      "files": ["cypress/**/*.js", "cypress/**/*.ts"],
-      "env": {
-        "cypress/globals": true
-      }
-    }
-  ]
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "warn",
+    "react/jsx-key": "warn",
+    "no-undef": "off"
+  }
 }
