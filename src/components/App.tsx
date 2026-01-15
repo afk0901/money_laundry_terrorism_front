@@ -29,7 +29,7 @@ const App: React.FC<AppProps> = () => {
       setSubmittedAt(new Date());
       should_produce ? setShouldProduceDocument(true) : setShouldProduceDocument(false)
 
-      const KYCPDFdoc: React.ReactElement = 
+      const KYCPDFdoc: React.ReactElement<object> = 
         <KYCPDF
           {...{ email,
           customer_employment,

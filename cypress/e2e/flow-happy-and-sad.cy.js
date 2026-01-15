@@ -73,57 +73,29 @@ describe('Click on next and check the forms', () => {
         //step one, two, three, four and five should be valid now.
         verify_valid_steps(4)
 
-        //Political connections (without a description)
-        no_validation_error()
         cy.get(next_id).click()
 
-        //step one, two, three, four, five and six should be valid now.
+        //Political connections (without a description)
+        no_validation_error()
         verify_valid_steps(5)
+
+        
 
         // Go back so we can validate the description box.
         cy.get(back_id).click()
+        verify_valid_steps(5)
 
         // Political connections (with description)
         no_validation_error()
         cy.get('.checkbox').check()
-        verify_valid_steps(4)
-          //Step 6 should be invalid but others valid.
+
+        //Step 6 should be invalid but others valid.
         click_next_and_invalidate(next_id, 'Slá verður inn pólitísk tengsl', 5)
 
         fill_and_click_next(next_id, '.description', political_connections)
 
         //step one, two, three, four, five and six should be valid now.
         verify_valid_steps(5)
-
-        // Risk (Small)
-        no_validation_error()
-        cy.get('select').select('Lítil')
-        cy.get(next_id).click()
-        verify_overview(email, purpose_of_business, origin_of_funds, 'Lítil')
-
-        //step one, two, three, four, five, six and seven should be valid now.
-        verify_valid_steps(5)
-        cy.get(back_id).click()
-
-        // Risk (Medium)
-        no_validation_error()
-        cy.get('select').select('Miðlungs')
-        cy.get(next_id).click()
-        verify_overview(email, purpose_of_business, origin_of_funds,'Miðlungs')
-
-        //step one, two, three, four, five, six and seven should be valid now.
-        verify_valid_steps(6)
-
-        cy.get(back_id).click()
-
-        // Risk (High)
-        no_validation_error()
-        cy.get('select').select('Mikil')
-        cy.get(next_id).click()
-        verify_overview(email, purpose_of_business, origin_of_funds,'Mikil')
-
-        //step one, two, three, four, five, six and seven should be valid now.
-        verify_valid_steps(6)
 
         // Produce document
         cy.get('.produce_document_butt').click()

@@ -3,24 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-buddy/ide-toolbox": "^2.3.1",
-    "@react-pdf/renderer": "^4.3.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.0.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.31",
-    "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.9.0",
-    "react-multistep": "^5.5.8",
+    "@react-pdf/renderer": "^4.3.2",
+    "@types/node": "^25.0.8",
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.2",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-icons": "^5.5.0",
     "react-pdf": "^10.3.0",
     "react-scripts": "^5.0.1",
-    "react-step-wizard": "^5.3.11",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,7 +40,15 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^12.17.3",
-    "eslint-plugin-cypress": "^2.15.1"
+    "@cypress/react": "^9.0.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
+    "css-loader": "^7.1.2",
+    "cypress": "^15.9.0",
+    "eslint-plugin-cypress": "^5.2.1",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.9.3"
   }
 }
