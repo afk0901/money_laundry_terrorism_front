@@ -10,9 +10,9 @@ interface DescriptionFormProps {
 }
 
 const DescriptionForm: React.FC<DescriptionFormProps> =
-    ({   description,
-         placeholder,
-         next_button_clicked,
+    ({  description,
+        placeholder,
+        next_button_clicked,
         onDescriptionChange,
         invalid_description_message,
         setParentValidation

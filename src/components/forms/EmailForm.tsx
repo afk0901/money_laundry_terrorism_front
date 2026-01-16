@@ -55,13 +55,13 @@ const EmailForm: React.FC<EmailFormProps> = ({email, onEmailChange, setParentVal
                 <input
                     placeholder='Netfang'
                     type="email"
-                    className={`form-control ${ (emptyEmail) ? 'is-invalid' : ''}`}
+                    className={'form-control'}
                     value={email}
                     onChange={handleEmailChange}
                     required
                 />
-                {!validEmail && hasBeenTouchedBefore && !emptyEmail && <div className="invalid-feedback">Netfang er á ógildu sniði</div>}
-                {emptyEmail && <div className="invalid-feedback">Netfang má ekki vera tómt</div>}
+                {!validEmail && hasBeenTouchedBefore && !emptyEmail && <div className="invalid-feedback d-block">Netfang er á ógildu sniði</div>}
+                {emptyEmail && <div className="invalid-feedback d-block">Netfang má ekki vera tómt</div>}
             </div>
         </form>
     );

@@ -86,9 +86,9 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
 
   return (
     <div className="container">
-      <div className="d-flex justify-content-center align-items-center flex-column flex-md-row mt-5">
+      <div className="d-flex justify-content-center align-items-center flex-column flex-md-row mt-5 flex-wrap">
         {steps.map((step, index) => {
-          const stepClasses = `step-label text-center me-1 ${
+          const stepClasses = `step-label text-center ${
             stepStates[index] ? "completed" : ""
           } ${currentStep === index ? "active" : ""}`;
           return (
@@ -100,20 +100,20 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
                 id={`step-${index}`}
               />
               {index < steps.length - 1 && (
-                <div className="border-bottom border-dark mx-2 step-line d-none d-md-block" />
+                <div className="border-bottom border-dark mx-1 step-line d-none d-md-block" />
               )}
             </div>
           );
         })}
       </div>
-      <div className="mt-5">
+      <div className="mt-3">
         {React.cloneElement(steps[currentStep], {
           shouldValidate: shouldValidateCurrentForm,
           setParentValidation,
           next_button_clicked: nextButtonClicked,
         })}
       </div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between mt-3">
         {currentStep > 0 && (
           <button className="btn btn-primary" id="back" onClick={prevStep}>
             Til baka

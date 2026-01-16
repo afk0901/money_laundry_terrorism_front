@@ -15,7 +15,7 @@
  */
 export const click_next_and_invalidate = (next_id, feedback, step_number) => {
     cy.get(next_id).click();
-    cy.get('.container').contains(feedback)
+    cy.get('.container').contains(feedback).should('be.visible');
     cy.get(`#step-${step_number} .invalid-step`).should('exist')
 };
 
