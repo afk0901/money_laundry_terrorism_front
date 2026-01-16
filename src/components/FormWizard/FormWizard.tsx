@@ -50,8 +50,9 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
     step: number,
     currentStepStates?: (boolean | undefined)[]
   ) => {
-    setIsValid(true);
+    
     setShouldValidateCurrentForm(false);
+    setnextButtonClicked(false);
     setCurrentStep(step);
     disableNextForStepIfAnyStepInvalid(step, currentStepStates || stepStates);
   };
@@ -64,12 +65,17 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
   };
 
   const nextStep = () => {
+
     setnextButtonClicked(true);
     const lastStep = currentStep >= steps.length - 1;
+    const nextStepIndex = currentStep + 1;
+    
     if (lastStep) return;
     const newStepStates = updateCurrentStepState(isValid);
     if (!isValid) return;
-    goToStep(currentStep + 1, newStepStates);
+
+    setIsValid(true);
+    goToStep(nextStepIndex , newStepStates);
     setIsValid(false);
     setnextButtonClicked(false);
   };
