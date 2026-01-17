@@ -4,10 +4,10 @@ import { textInputValidationTests } from "../helpers/textInputValidationTests";
 const validationErrorText = /Uppruni fjármagns má ekki vera tómt/i;
 
 textInputValidationTests(
-  'Origin of funds input',
+  "Origin of funds input",
   OriginOfFunds,
-  'description',
-  'onDescriptionChange',
+  "description",
+  "onDescriptionChange",
   validationErrorText,
-  'Salary'
+  "Salary",
 );

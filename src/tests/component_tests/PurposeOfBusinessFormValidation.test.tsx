@@ -4,10 +4,10 @@ import { textInputValidationTests } from "../helpers/textInputValidationTests";
 const validationErrorText = /Tilgangur og eðli viðskipta má ekki vera tómt/i;
 
 textInputValidationTests(
-  'Purpose of business input',
+  "Purpose of business input",
   PurposeOfBusiness,
-  'description',
-  'onDescriptionChange',
+  "description",
+  "onDescriptionChange",
   validationErrorText,
-  'Real estate trading'
+  "Real estate trading",
 );

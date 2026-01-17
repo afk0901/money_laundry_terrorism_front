@@ -9,7 +9,7 @@ interface MinimumFormProps {
 
 /**
  * Creates a complete test suite for a text input form component
- * 
+ *
  * @param componentName - Display name for the test suite
  * @param FormComponent - The React component to test
  * @param propName - The name of the value prop
@@ -23,52 +23,62 @@ export function textInputValidationTests<T extends MinimumFormProps>(
   propName: string,
   onChangePropName: string,
   validationErrorRegex: RegExp,
-  testValue: string
+  testValue: string,
 ) {
-  
-  const createProps = (overrides: Record<string, unknown> = {}): T => ({
-    [propName]: "",
-    [onChangePropName]: jest.fn(),
-    setParentValidation: jest.fn(),
-    next_button_clicked: false,
-    ...overrides
-  } as unknown as T);
+  const createProps = (overrides: Record<string, unknown> = {}): T =>
+    ({
+      [propName]: "",
+      [onChangePropName]: jest.fn(),
+      setParentValidation: jest.fn(),
+      next_button_clicked: false,
+      ...overrides,
+    }) as unknown as T;
 
   describe(componentName, () => {
-    test('renders initially without validation error', async () => {
+    test("renders initially without validation error", async () => {
       render(<FormComponent {...createProps()} />);
       expect(screen.queryByText(validationErrorRegex)).not.toBeInTheDocument();
     });
 
-    test('shows validation error when next button clicked with empty input', async () => {
+    test("shows validation error when next button clicked with empty input", async () => {
       const { rerender } = render(<FormComponent {...createProps()} />);
-      rerender(<FormComponent {...createProps({ next_button_clicked: true })} />);
+      rerender(
+        <FormComponent {...createProps({ next_button_clicked: true })} />,
+      );
       expect(screen.getByText(validationErrorRegex)).toBeInTheDocument();
     });
 
-    test('validates input after user types', async () => {
+    test("validates input after user types", async () => {
       const user = userEvent.setup();
-  const mockOnChange = jest.fn();
-  const mockSetValidation = jest.fn();
-  
-  const { rerender } = render(<FormComponent {...createProps({ 
-    [onChangePropName]: mockOnChange,
-    setParentValidation: mockSetValidation,
-    next_button_clicked: false
-  })} />);
+      const mockOnChange = jest.fn();
+      const mockSetValidation = jest.fn();
 
-  await user.type(screen.getByDisplayValue(''), testValue);
+      const { rerender } = render(
+        <FormComponent
+          {...createProps({
+            [onChangePropName]: mockOnChange,
+            setParentValidation: mockSetValidation,
+            next_button_clicked: false,
+          })}
+        />,
+      );
 
-  // Trigger validation by setting next_button_clicked
-  rerender(<FormComponent {...createProps({
-    [propName]: testValue,
-    [onChangePropName]: mockOnChange,
-    setParentValidation: mockSetValidation,
-    next_button_clicked: true
-  })} />);
+      await user.type(screen.getByDisplayValue(""), testValue);
 
-  expect(mockOnChange).toHaveBeenCalled();
-  expect(mockSetValidation).toHaveBeenLastCalledWith(true);
+      // Trigger validation by setting next_button_clicked
+      rerender(
+        <FormComponent
+          {...createProps({
+            [propName]: testValue,
+            [onChangePropName]: mockOnChange,
+            setParentValidation: mockSetValidation,
+            next_button_clicked: true,
+          })}
+        />,
+      );
+
+      expect(mockOnChange).toHaveBeenCalled();
+      expect(mockSetValidation).toHaveBeenLastCalledWith(true);
     });
   });
 }

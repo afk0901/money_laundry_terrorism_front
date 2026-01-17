@@ -49,16 +49,16 @@ export default function DisplayPDF({ pdf, onBackToForm }: DisplayPDFProps) {
 
   return (
     <>
-    <div
-      className="container-fluid 
+      <div
+        className="container-fluid 
                     d-flex 
                     align-items-center 
                     justify-content-center 
                     bg-light py-4"
-    >
-      <div
-        ref={card_ref}
-        className="shadow-lg 
+      >
+        <div
+          ref={card_ref}
+          className="shadow-lg 
                     p-3 
                     p-sm-4 
                     bg-white 
@@ -68,25 +68,25 @@ export default function DisplayPDF({ pdf, onBackToForm }: DisplayPDFProps) {
                     d-flex 
                     flex-column 
                     align-items-center"
-        style={{ maxWidth: 900 }}
-      >
-        <div className="d-flex justify-content-center">
-          <Document file={pdf_url} onLoadSuccess={on_document_load_success}>
-            <Page
-              pageNumber={1} // As for now, there is just one page. Avoiding to create  a state for current page.
-              width={page_width}
-              renderTextLayer={false}
-              renderAnnotationLayer={false}
-            />
-          </Document>
+          style={{ maxWidth: 900 }}
+        >
+          <div className="d-flex justify-content-center">
+            <Document file={pdf_url} onLoadSuccess={on_document_load_success}>
+              <Page
+                pageNumber={1} // As for now, there is just one page. Avoiding to create  a state for current page.
+                width={page_width}
+                renderTextLayer={false}
+                renderAnnotationLayer={false}
+              />
+            </Document>
+          </div>
+          <PageNumberDisplay current_page={1} total_pages={num_pages} />
         </div>
-        <PageNumberDisplay current_page={1} total_pages={num_pages} />
       </div>
-    </div>
-    <div className="d-flex justify-content-center gap-2 mt-3">
-      <BackToFormButton onClick={onBackToForm} />
-      <DownloadButton pdfBlob={pdf} filename={"KYC_Form.pdf"} />
-    </div>
+      <div className="d-flex justify-content-center gap-2 mt-3">
+        <BackToFormButton onClick={onBackToForm} />
+        <DownloadButton pdfBlob={pdf} filename={"KYC_Form.pdf"} />
+      </div>
     </>
   );
 }

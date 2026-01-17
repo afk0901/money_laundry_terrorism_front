@@ -2,19 +2,29 @@ import React, { useState, useEffect } from "react";
 import Step from "./Step";
 import "./stepbar.css";
 
-interface FormWizardProps {
+const STEP_LABELS = [
+  "Netfang",
+  "Atvinna viðskiptavinar",
+  "Tilgangur og eðli viðskipta",
+  "Uppruni fjármagns",
+  "Raunverulegir eigendur",
+  "Pólitísk tengsl",
+  "Yfirlit",
+];
+
+type FormWizardProps = {
   steps: React.ReactElement<{
     setParentValidation: (isValid: boolean) => void;
     shouldValidate?: boolean;
     next_button_clicked: boolean;
   }>[];
   produce_document: () => void;
-}
+};
 
 const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [stepStates, setStepStates] = useState<(boolean | undefined)[]>(
-    Array(steps.length).fill(undefined)
+    Array(steps.length).fill(undefined),
   );
   const [shouldValidateCurrentForm, setShouldValidateCurrentForm] =
     useState(false);
@@ -23,15 +33,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
   const [disabledNextButton, setDisabledNextButton] = useState(false);
   const [allStepsValid, setAllStepsValid] = useState(false);
 
-  const stepLabels = [
-    "Netfang",
-    "Atvinna viðskiptavinar",
-    "Tilgangur og eðli viðskipta",
-    "Uppruni fjármagns",
-    "Raunverulegir eigendur",
-    "Pólitísk tengsl",
-    "Yfirlit",
-  ];
+  const stepLabels = STEP_LABELS;
 
   useEffect(() => {
     const stepsWithoutLast = stepStates.slice(0, -1);
@@ -41,17 +43,11 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
 
   const setParentValidation = (valid: boolean) => {
     setIsValid(valid);
-  
-    if (valid && currentStep === steps.length - 1) {
-      const newStepStates = [...stepStates];
-      newStepStates[currentStep] = true;
-      setStepStates(newStepStates);
-    }
   };
 
   const disableNextForStepIfAnyStepInvalid = (
     step: number,
-    currentStepStates: (boolean | undefined)[]
+    currentStepStates: (boolean | undefined)[],
   ) => {
     const prevSteps = currentStepStates.slice(0, -2);
     const hasInvalidSteps = prevSteps.some((state) => state !== true);
@@ -61,9 +57,8 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
 
   const goToStep = (
     step: number,
-    currentStepStates?: (boolean | undefined)[]
+    currentStepStates?: (boolean | undefined)[],
   ) => {
-    
     setShouldValidateCurrentForm(false);
     setnextButtonClicked(false);
     setCurrentStep(step);
@@ -78,17 +73,16 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
   };
 
   const nextStep = () => {
-
     setnextButtonClicked(true);
     const lastStep = currentStep >= steps.length - 1;
     const nextStepIndex = currentStep + 1;
-    
+
     if (lastStep) return;
     const newStepStates = updateCurrentStepState(isValid);
     if (!isValid) return;
 
     setIsValid(true);
-    goToStep(nextStepIndex , newStepStates);
+    goToStep(nextStepIndex, newStepStates);
     setIsValid(false);
     setnextButtonClicked(false);
   };

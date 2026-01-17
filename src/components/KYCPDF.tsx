@@ -35,16 +35,15 @@ export default function KYCPDF({
   political_connection_description,
   is_real_owner,
   has_political_connections,
-  submitted_at
+  submitted_at,
 }: KYCPDFProps) {
-
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <Text style={styles.title}>KYC - Yfirlýsing kaupanda</Text>
         <Text style={styles.subtitle}>
-          Skjal þetta endurspeglar upplýsingar eins og kaupandi
-          lýsti þeim við innsendingu.
+          Skjal þetta endurspeglar upplýsingar eins og kaupandi lýsti þeim við
+          innsendingu.
         </Text>
 
         <View style={styles.section}>
@@ -78,28 +77,30 @@ export default function KYCPDF({
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Pólitísk tengsl</Text>
-              <Text style={styles.value}>{yesNo(has_political_connections)}</Text>
+              <Text style={styles.value}>
+                {yesNo(has_political_connections)}
+              </Text>
             </View>
 
-            {has_political_connections &&
-            <View style={styles.row}>
-              <Text style={styles.label}>Lýsing á pólitískum tengslum</Text>
-              <Text style={styles.value}>
-                {has_political_connections
-                  ? political_connection_description
-                  : "Engin"}
-              </Text>
-            </View>}
+            {has_political_connections && (
+              <View style={styles.row}>
+                <Text style={styles.label}>Lýsing á pólitískum tengslum</Text>
+                <Text style={styles.value}>
+                  {has_political_connections
+                    ? political_connection_description
+                    : "Engin"}
+                </Text>
+              </View>
+            )}
           </View>
-
         </View>
 
         <Text style={styles.muted}>
           Innsent þann: {submitted_at.toLocaleDateString()}
         </Text>
         <Text style={styles.muted}>
-          Þetta skjal er óbreytanleg samantekt yfirlýsinga kaupanda.
-          Staðfesting og samþykki fer fram í sér yfirferðarferli.
+          Þetta skjal er óbreytanleg samantekt yfirlýsinga kaupanda. Staðfesting
+          og samþykki fer fram í sér yfirferðarferli.
         </Text>
       </Page>
     </Document>

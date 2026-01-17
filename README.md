@@ -5,6 +5,7 @@ Customer due diligence regarding to money laundering and terrorism, is a form th
 The project is a form wizard where the user is guided through the process of filling that form in. It's eight steps, one form for each step and includes a step bar that the user can click on to go to any steps the user wants. The step bar indicates if the corresponding step is valid or not when the next button is clicked and then finally, it will produce a PDF document with all the data.
 
 ## Known bugs
+
 - After PDF creation, there is a back button. When that button is clicked, the displayed form input is invalid.
 
 ## Features
@@ -17,31 +18,27 @@ The project is a form wizard where the user is guided through the process of fil
 
 ### Future features
 
--  Validation only activates on blur to prevent inconvenience for the user when typing in the data and providing better UX.
--  PDF generation - generating a PDF document from all the data
--  Connection to a backend - API connection to a backend API so the data can be saved as the user processes the form.
+- Validation only activates on blur to prevent inconvenience for the user when typing in the data and providing better UX.
+- PDF generation - generating a PDF document from all the data
+- Connection to a backend - API connection to a backend API so the data can be saved as the user processes the form.
 
 ## Screenshots
+
 Here are a few screenshots to further clarify how the project looks and works.
 
 ![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/8d4225c8-2952-4691-ba54-aa69f74ca373)
 
-
-As shown in the screenshot, we have a simple form and a step bar, and as this is the first step then, only the next button is shown. The step bar has step labels attached to each step, and steps that are not yet processed have empty icons. In this case, all of them are empty. 
-
+As shown in the screenshot, we have a simple form and a step bar, and as this is the first step then, only the next button is shown. The step bar has step labels attached to each step, and steps that are not yet processed have empty icons. In this case, all of them are empty.
 
 ![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/ccb4df86-37e7-46e0-8a1e-11283fd3c63e)
-
 
 Here we have filled in the form but we cleared the field again and now we get a validation error, as shown in red.
 
 ![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/14fe1de0-7a00-4136-a665-8673cd848a0e)
 
-
-Next, we clicked on the Next button, but as we left the field empty validation error is shown in the step bar. 
+Next, we clicked on the Next button, but as we left the field empty validation error is shown in the step bar.
 
 ![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/13fa18ac-6437-438a-997a-ae1fa0d68114)
-
 
 As we fill in the correct step and we click on the next button we can see the next step and the previous button.
 
@@ -49,10 +46,8 @@ All this process is done for all the steps in the step bar until the end of the 
 
 ![image](https://github.com/afk0901/money_laundry_terrorism_front/assets/10889206/3f3566f1-94f6-466b-a652-822ce970501b)
 
-
 This is an example of how it could look when everything is filled out to verify with the user that the information are all correct
 before we later on produce a PDF document with all the information.
-
 
 # Tools used in the project
 
@@ -68,7 +63,7 @@ The project originated from real business requirements for a company. Due to cha
 
 ## Setting up the project
 
-Clone the repository and then run: `npm install`, which should be sufficient to install everything. Below are available scripts, for example, for running the app and running tests. 
+Clone the repository and then run: `npm install`, which should be sufficient to install everything. Below are available scripts, for example, for running the app and running tests.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -1,10 +1,10 @@
-import React from 'react'
-import App from '../../src/components/App'
-import { mount } from 'cypress/react'
+import React from "react";
+import App from "../../src/components/App";
+import { mount } from "cypress/react";
 
-describe('<App />', () => {
-  it('renders', () => {
+describe("<App />", () => {
+  it("renders", () => {
     // see: https://on.cypress.io/mounting-react
-    mount(<App />)
-  })
-})
+    mount(<App />);
+  });
+});

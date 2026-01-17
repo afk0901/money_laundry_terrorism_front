@@ -1,8 +1,8 @@
-import {fill_into_every_element} from "./fill_into_inputs_and_steps_helpers";
-import {clickNextButton} from "./clickNextAndBackButtons";
+import { fill_into_every_element } from "./fill_into_inputs_and_steps_helpers";
+import { clickNextButton } from "./clickNextAndBackButtons";
 import userEvent from "@testing-library/user-event";
-import {screen} from "@testing-library/react";
-import {UserEvent} from "@testing-library/user-event/setup/setup";
+import { screen } from "@testing-library/react";
+import { UserEvent } from "@testing-library/user-event/setup/setup";
 
 /**
  * Click on a step according to the stepIndex parameter
@@ -10,9 +10,9 @@ import {UserEvent} from "@testing-library/user-event/setup/setup";
  * @param user - userEvent.setup()
  * @param stepIndex - The index of the step in the step-bar
  */
-export async function click_on_step(user : UserEvent, stepIndex : number) {
-    const step = screen.getByTestId(`step-${stepIndex}`);
-    await user.click(step);
+export async function click_on_step(user: UserEvent, stepIndex: number) {
+  const step = screen.getByTestId(`step-${stepIndex}`);
+  await user.click(step);
 }
 
 /**
@@ -25,9 +25,10 @@ export async function click_on_step(user : UserEvent, stepIndex : number) {
  * @param stepLabels - The step labels of the step-bar.
  * @param stepIndex - Index of the corresponding step label of the step to assert.
  */
-function total_completed_steps(stepLabels : string[], stepIndex : number= 0) {
-
-    return screen.getAllByText(stepLabels[stepIndex]).filter(element => element.classList.contains('completed')).length;
+function total_completed_steps(stepLabels: string[], stepIndex: number = 0) {
+  return screen
+    .getAllByText(stepLabels[stepIndex])
+    .filter((element) => element.classList.contains("completed")).length;
 }
 
 /**
@@ -38,8 +39,11 @@ function total_completed_steps(stepLabels : string[], stepIndex : number= 0) {
  * @param stepLabels - The step labels of the step-bar.
  * @param stepIndex - Index of the corresponding step label of the step to assert.
  */
-export async function expect_step_completed(stepLabels : string[] , stepIndex : number  = 0) {
-    expect(total_completed_steps(stepLabels, stepIndex)).toBe(1);
+export async function expect_step_completed(
+  stepLabels: string[],
+  stepIndex: number = 0,
+) {
+  expect(total_completed_steps(stepLabels, stepIndex)).toBe(1);
 }
 
 /**
@@ -51,8 +55,11 @@ export async function expect_step_completed(stepLabels : string[] , stepIndex : 
  * @param stepIndex - Index of the corresponding step label of the step to assert.
  */
 
-export async function expect_steps_not_completed(stepLabels : string[] , stepIndex : number  = 0) {
-          expect(total_completed_steps(stepLabels, stepIndex)).toBe(0);
+export async function expect_steps_not_completed(
+  stepLabels: string[],
+  stepIndex: number = 0,
+) {
+  expect(total_completed_steps(stepLabels, stepIndex)).toBe(0);
 }
 
 /**
@@ -70,61 +77,76 @@ export async function expect_steps_not_completed(stepLabels : string[] , stepInd
  * For example, ending on the first step would be number 0, the second step number 1 and so on
  *
  */
-export async function expectNStepsToBeCompleted(stepLabels : string[], startStepNumber : number, endStepNumber : number ) {
-
-    let completedElements = 0
-    // For each text label, check if everything from that text label is completed
-    stepLabels.slice(startStepNumber, endStepNumber + 1).forEach((textElement) => {
+export async function expectNStepsToBeCompleted(
+  stepLabels: string[],
+  startStepNumber: number,
+  endStepNumber: number,
+) {
+  let completedElements = 0;
+  // For each text label, check if everything from that text label is completed
+  stepLabels
+    .slice(startStepNumber, endStepNumber + 1)
+    .forEach((textElement) => {
       // Do we find textElement with the completed class?
-      const text_elements = screen.getAllByText(textElement)
-      const text_labels = text_elements.filter(element => element.classList.contains('completed'));
-      completedElements += text_labels.length
+      const text_elements = screen.getAllByText(textElement);
+      const text_labels = text_elements.filter((element) =>
+        element.classList.contains("completed"),
+      );
+      completedElements += text_labels.length;
     });
-    expect(completedElements).toBe(endStepNumber + 1);
+  expect(completedElements).toBe(endStepNumber + 1);
 }
 
 /**
-   * Expect one of the textElements (the step labels) to be completed; with other words,
-   * one random step should be completed when the next button is clicked on the random step.
-   *
-   * @param stepLabels - step labels text
-   * @param stepIndex - the index of the step - the step number
-   */
-  export async function expect_one_text_element_to_be_completed_when_step_and_next_button_is_clicked(stepLabels : string[], stepIndex : number) {
+ * Expect one of the textElements (the step labels) to be completed; with other words,
+ * one random step should be completed when the next button is clicked on the random step.
+ *
+ * @param stepLabels - step labels text
+ * @param stepIndex - the index of the step - the step number
+ */
+export async function expect_one_text_element_to_be_completed_when_step_and_next_button_is_clicked(
+  stepLabels: string[],
+  stepIndex: number,
+) {
+  const user = userEvent.setup();
 
-        const user = userEvent.setup()
+  // Click on a random step
+  await click_on_step(user, stepIndex);
+  // Fill into inputs and checkboxes
+  await fill_into_every_element(user); // This is slowing things down, find a way to fill into only elements in the step
+  await clickNextButton(user);
 
-        // Click on a random step
-        await click_on_step(user, stepIndex)
-        // Fill into inputs and checkboxes
-        await fill_into_every_element(user) // This is slowing things down, find a way to fill into only elements in the step
-        await clickNextButton(user)
-
-        // Expect that random step to be completed.
-        await expect_step_completed(stepLabels, stepIndex)
-  }
+  // Expect that random step to be completed.
+  await expect_step_completed(stepLabels, stepIndex);
+}
 
 /**
  * Expects all the given step-bar icons to be in the document
  *
  * @param stepBarIcons - Array of step-bar icons to be in the document
  */
-export async function expectAllStepIconsInDocument(stepBarIcons : HTMLElement[]) {
-        stepBarIcons.forEach(icon => {
-        expect(icon).toBeInTheDocument();
-        expect(icon).toContainHTML('svg');
-    });
-  }
+export async function expectAllStepIconsInDocument(
+  stepBarIcons: HTMLElement[],
+) {
+  stepBarIcons.forEach((icon) => {
+    expect(icon).toBeInTheDocument();
+    expect(icon).toContainHTML("svg");
+  });
+}
 
-  export function getActiveStepLabel(labelText: RegExp) {
-    const stepLabelElements = screen.getAllByText(labelText);
-    return stepLabelElements.find((label: HTMLElement) => label.classList.contains('active'));
-    }
+export function getActiveStepLabel(labelText: RegExp) {
+  const stepLabelElements = screen.getAllByText(labelText);
+  return stepLabelElements.find((label: HTMLElement) =>
+    label.classList.contains("active"),
+  );
+}
 
-
-  module.exports = {expect_one_text_element_to_be_completed_when_step_and_next_button_is_clicked,
-                    expectNStepsToBeCompleted, expectAllStepIconsInDocument,
-                    expect_step_completed,
-                    expect_steps_not_completed,
-                    click_on_step,
-                    getActiveStepLabel}
+module.exports = {
+  expect_one_text_element_to_be_completed_when_step_and_next_button_is_clicked,
+  expectNStepsToBeCompleted,
+  expectAllStepIconsInDocument,
+  expect_step_completed,
+  expect_steps_not_completed,
+  click_on_step,
+  getActiveStepLabel,
+};

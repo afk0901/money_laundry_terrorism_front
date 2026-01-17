@@ -14,9 +14,9 @@
  *
  */
 export const click_next_and_invalidate = (next_id, feedback, step_number) => {
-    cy.get(next_id).click();
-    cy.get('.container').contains(feedback).should('be.visible');
-    cy.get(`#step-${step_number} .invalid-step`).should('exist')
+  cy.get(next_id).click();
+  cy.get(".container").contains(feedback).should("be.visible");
+  cy.get(`#step-${step_number} .invalid-step`).should("exist");
 };
 
 /**
@@ -26,9 +26,9 @@ export const click_next_and_invalidate = (next_id, feedback, step_number) => {
  *
  */
 export const verify_valid_steps = (current_step) => {
-    for (let i = 0; i <= current_step; i++) {
-        cy.get(`#step-${i} .valid-step`).should('exist');
-    }
+  for (let i = 0; i <= current_step; i++) {
+    cy.get(`#step-${i} .valid-step`).should("exist");
+  }
 };
 
 /**
@@ -36,10 +36,12 @@ export const verify_valid_steps = (current_step) => {
  *
  */
 export const no_validation_error = () => {
-     cy.get('.container').contains('má ekki vera tómt').should('not.exist')
-     cy.get('.container').contains('ógildu sniði').should('not.exist')
-     cy.get('.container').contains('Slá verður inn pólitísk tengsl').should('not.exist')
-     cy.get('.container').not('.invalid')
-}
+  cy.get(".container").contains("má ekki vera tómt").should("not.exist");
+  cy.get(".container").contains("ógildu sniði").should("not.exist");
+  cy.get(".container")
+    .contains("Slá verður inn pólitísk tengsl")
+    .should("not.exist");
+  cy.get(".container").not(".invalid");
+};
 
-exports = {verify_valid_steps, no_validation_error}
+exports = { verify_valid_steps, no_validation_error };
