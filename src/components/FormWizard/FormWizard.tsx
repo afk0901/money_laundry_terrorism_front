@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Step from "./Step";
 import "./stepbar.css";
 
@@ -21,6 +21,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
   const [isValid, setIsValid] = useState(false);
   const [nextButtonClicked, setnextButtonClicked] = useState(false);
   const [disabledNextButton, setDisabledNextButton] = useState(false);
+  const [allStepsValid, setAllStepsValid] = useState(false);
 
   const stepLabels = [
     "Netfang",
@@ -32,8 +33,20 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
     "Yfirlit",
   ];
 
+  useEffect(() => {
+    const stepsWithoutLast = stepStates.slice(0, -1);
+    const allValid = stepsWithoutLast.every((state) => state === true);
+    setAllStepsValid(allValid);
+  }, [stepStates]);
+
   const setParentValidation = (valid: boolean) => {
     setIsValid(valid);
+  
+    if (valid && currentStep === steps.length - 1) {
+      const newStepStates = [...stepStates];
+      newStepStates[currentStep] = true;
+      setStepStates(newStepStates);
+    }
   };
 
   const disableNextForStepIfAnyStepInvalid = (
@@ -134,6 +147,7 @@ const FormWizard: React.FC<FormWizardProps> = ({ steps, produce_document }) => {
         ) : (
           <button
             className="btn btn-primary ml-2 produce_document_butt"
+            disabled={!allStepsValid}
             onClick={produce_document}
           >
             Framkalla skjal

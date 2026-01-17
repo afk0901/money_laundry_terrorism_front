@@ -1,7 +1,7 @@
 import {verify_valid_steps, no_validation_error, click_next_and_invalidate}
         from '../helpers/validation'
 
-import {fill_and_click_next, verify_overview} from '../helpers/happyflow'
+import {fill_and_click_next} from '../helpers/happyflow'
 
 /**
  * This test suit verifies the flow of the application by
@@ -78,8 +78,6 @@ describe('Click on next and check the forms', () => {
         //Political connections (without a description)
         no_validation_error()
         verify_valid_steps(5)
-
-        
 
         // Go back so we can validate the description box.
         cy.get(back_id).click()
