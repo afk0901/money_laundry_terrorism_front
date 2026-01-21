@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({
     <div className="card mx-3 my-3">
       <div className="card-body d-flex flex-column align-items-center justify-content-center">
         <div className="card-title text-center">
-          <h2>Áræðanleikakönnun viðskiptamanna</h2>
+          <h2>Áreiðanleikakönnun viðskiptamanna</h2>
           <h6>Einstaklingar</h6>
         </div>
         <InformationProcessingNotice />

@@ -1,4 +1,5 @@
 import React from "react";
+import FieldRow from "./FieldRow";
 
 interface OverviewProps {
   email: string;
@@ -20,27 +21,45 @@ const Overview: React.FC<OverviewProps> = ({
   has_political_connections,
 }) => {
   return (
-    <>
-      <h1>Allt rétt?</h1>
-      <h5>Netfang</h5>
-      {email ? email : "Ekkert netfang skráð."}
-      <h5>Starfsheiti viðskiptamanns</h5>
-      {customer_employment ? customer_employment : "Ekkert starfsheiti skráð."}
-      <h5>Tilgangur og eðli viðskipta</h5>
-      {purpose_of_business
-        ? purpose_of_business
-        : "Engin tilgangur eða eðli viðskipta skráð."}
-      <h5>Uppruni fjármagns</h5>
-      {origin_of_funds ? origin_of_funds : "Engin uppruni fjármagns skráður."}
-      <h5>Raunverulegir eigendur</h5>
-      {is_real_owner
-        ? "Er raunverulegur eigandi"
-        : "Er ekki raunverulegur eigandi"}
-      <h5>Pólitísk tengsl</h5>
-      {has_political_connections
-        ? political_connection_description
-        : "Engin pólitísk tengsl"}
-    </>
+    <div className="overview-container">
+      <h2 className="mb-4 text-center">Allt rétt?</h2>
+      <div className="card border-0 shadow-sm">
+        <div className="card-body">
+          <FieldRow label="Netfang" value={email || "Ekkert netfang skráð."} />
+          <hr className="my-2" />
+          <FieldRow
+            label="Starfsheiti viðskiptavinar"
+            value={customer_employment || "Ekkert starfsheiti skráð."}
+          />
+          <hr className="my-2" />
+          <FieldRow
+            label="Tilgangur og eðli viðskipta"
+            value={purpose_of_business || "Engin tilgangur eða eðli viðskipta skráð."}
+          />
+          <hr className="my-2" />
+          <FieldRow
+            label="Uppruni fjármagns"
+            value={origin_of_funds || "Engin uppruni fjármagns skráður."}
+          />
+          <hr className="my-2" />
+          <FieldRow
+            label="Raunverulegir eigendur"
+            value={
+              is_real_owner ? "Er raunverulegur eigandi" : "Er ekki raunverulegur eigandi"
+            }
+          />
+          <hr className="my-2" />
+          <FieldRow
+            label="Pólitísk tengsl"
+            value={
+              has_political_connections
+                ? political_connection_description
+                : "Engin pólitísk tengsl"
+            }
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

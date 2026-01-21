@@ -55,7 +55,7 @@ const CustomerEmployment: React.FC<CustomerEmploymentProps> = ({
         <input
           placeholder="Atvinna viðskiptavinar"
           type="text"
-          className={`form-control ${emptyJob ? "is-invalid" : "is-valid"}`}
+          className={`form-control ${emptyJob ? "is-invalid" : ""}`}
           value={customerEmployment}
           onChange={handleCustomerEmploymentChange}
           required

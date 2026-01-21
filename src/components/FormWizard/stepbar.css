@@ -5,6 +5,8 @@
   text-align: right;
   flex-shrink: 1;
   min-width: 0;
+  gap: 8px;
+  transition: all 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -16,18 +18,36 @@
 
 .step-line {
   width: 50px;
-  height: 2px;
+  height: 3px;
   margin-top: 5px;
   flex-shrink: 0;
+  background: linear-gradient(to right, #e9ecef, #dee2e6);
+  transition: background 0.3s ease;
+}
+
+.step-container.completed .step-line {
+  background: linear-gradient(to right, #28a745, #20c997);
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
 }
 
 .step-label {
   word-break: break-word;
   overflow-wrap: break-word;
   font-size: 0.875rem;
-  font-weight: bold;
+  font-weight: 600;
+  color: #6c757d;
+  transition: color 0.3s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .step-label.active {
-  color: blue;
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+  font-weight: 700;
+}
+
+.step-label.completed {
+  color: #28a745;
+  font-weight: 600;
 }
