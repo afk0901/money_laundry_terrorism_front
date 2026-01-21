@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import styles from "../DisplayPDF.module.css";
 import { Document, Page, pdfjs } from "react-pdf";
 import PageNumberDisplay from "./PageNumberDisplay";
 import DownloadButton from "./DownloadButton";
@@ -18,6 +19,7 @@ export default function DisplayPDF({ pdf, onBackToForm }: DisplayPDFProps) {
   const [num_pages, set_num_pages] = useState<number>(0);
   const [page_width, set_page_width] = useState<number>(800);
   const card_ref = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     const update_width = () => {
@@ -54,7 +56,7 @@ export default function DisplayPDF({ pdf, onBackToForm }: DisplayPDFProps) {
                     d-flex 
                     align-items-center 
                     justify-content-center 
-                    bg-light py-4"
+                    py-4 mt-5"
       >
         <div
           ref={card_ref}
@@ -83,7 +85,7 @@ export default function DisplayPDF({ pdf, onBackToForm }: DisplayPDFProps) {
           <PageNumberDisplay current_page={1} total_pages={num_pages} />
         </div>
       </div>
-      <div className="d-flex justify-content-center gap-2 mt-3">
+      <div className={styles["pdf-page-buttons"]}>
         <BackToFormButton onClick={onBackToForm} />
         <DownloadButton pdfBlob={pdf} filename={"KYC_Form.pdf"} />
       </div>
